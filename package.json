@@ -1,0 +1,30 @@
+{
+  "name": "surprizelottery",
+  "version": "1.0.0",
+  "description": "Surprize lottery is a entertainment webApp where you can earn money.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvivHK/SurprizeLottery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AvivHK/SurprizeLottery/issues"
+  },
+  "homepage": "https://github.com/AvivHK/SurprizeLottery#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "handlebars": "^4.7.3",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.9.2",
+    "request": "^2.88.2"
+  }
+}
