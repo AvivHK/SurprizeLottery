@@ -1,5 +1,6 @@
 body{
-  background-color: #353738;
+  background-color: #ecf0f1;
+  margin: 0;
 }
 
 #container {
@@ -53,20 +54,24 @@ body{
 #header{
   width: 100vw;
   height: 80px;
-  background-color: #839D9A;
+  background-color: #344055;
   text-align: center;
+  margin: 0px;
 }
 
 #siteName{
-  color: #383D3B;
+  color: #F9EBE0;
   display: inline-block;
 }
 
 .card{
   display: grid;
-  border: 3px solid #1C7C54;
+  border: 3px solid #31081F;
   border-radius: 5%;
-  background-color: #8AB0AB;
+  /* background-color: #344055; */
+  background-color: transparent;
+  
+  color: #2c3e50;
   height: 300px;
   width: 280px;
   grid-template-rows: 3fr 1fr 1fr 1fr;
@@ -74,6 +79,7 @@ body{
   row-gap: 15px;
   margin: 10px;
   padding: 15px;
+  box-shadow: 3px 3px black;
 
 }
 
