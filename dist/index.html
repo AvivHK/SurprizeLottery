@@ -14,12 +14,10 @@
     
     
     <div id="container"></div>
-      
 
     <script id="lotteryTemplate" type="text/x-handlebars-template">
-        
     {{#each lotteryData}}
-        
+    
         <div class="card">
             
             {{#if isProduct}}
@@ -45,8 +43,10 @@
             </div>
             
             <div class="paymentBox">
+
                 <div class="buyIn">{{entryFee}}$ per ticket</div>
                 <div class="paypal">paypal </div>
+
             </div>
         </div>    
         
@@ -61,8 +61,6 @@
                 </ul>  
             {{/each}}
         {{/if}}
-        <div class="paypal">paypal </div>
-        <div>
  
 
       </script>
