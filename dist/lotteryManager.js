@@ -6,8 +6,8 @@ class lotteryManager{
     }
 
     async getLottery(isProduct){
-        let lotories = await $.get(`/lottery/${isProduct}`)
-        return lotories
+        let lotteries = await $.get(`/lottery/${isProduct}`)
+        return lotteries
     }
 
     async addUserToLottery(lotteryID) {
