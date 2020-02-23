@@ -50,6 +50,17 @@ body{
 
 }
 
+#header{
+  width: 100vw;
+  height: 80px;
+  background-color: #839D9A;
+  text-align: center;
+}
+
+#siteName{
+  color: #383D3B;
+  display: inline-block;
+}
 
 .card{
   display: grid;
