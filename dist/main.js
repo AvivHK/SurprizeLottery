@@ -22,3 +22,7 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
   let WinnersData = await lotteryManager.getLottery();
   renderer.renderWinners(WinnersData);
 });
+
+$('body').on("click", '#siteName', async function(){
+  loadHomePage()
+})
