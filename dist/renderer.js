@@ -2,11 +2,9 @@ class Renderer {
   renderHomePage() {
     $(`#container`).empty();
     $(`#container`).append(
-      `<div id="homepage">
-        <div id="money">money</div>
+      ` <div id="money">money</div>
         <div id="product">product</div>
-        <div id="WinnerList">WinnerList</div>
-      </div>`
+        <div id="WinnerList">WinnerList</div>`
     );
   }
 

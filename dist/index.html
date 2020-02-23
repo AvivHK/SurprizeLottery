@@ -11,25 +11,30 @@
 </head>
 
 <body>
+
     <div id="header">
         <h1 id="siteName">Site Name!</h1>
     </div>
+
     <div id="container"></div>
 
     <script id="lotteryTemplate" type="text/x-handlebars-template">
-        
     {{#each lotteryData}}
-        
+    
         <div class="card">
-            <div class="image">
-                <img  src="{{productPic}}" alt="{{productPrize}}">
-            </div>
+            
             {{#if isProduct}}
+                <div class="prize">
+                    <img  src="{{productPic}}" alt="{{productPrize}}">
+                </div>
                 <div class="type">
                     <h3 >{{productPrize}}</h3>
                 </div>
             {{/if}}
             {{#unless isProduct}}
+                <div class="prize">
+                    <h1>{{moneyPrize}} DOLLARS</h1>
+                </div>
                 <div class="type">
                     <h3 >{{moneyPrize}}$</h3>
                 </div>
@@ -41,8 +46,10 @@
             </div>
             
             <div class="paymentBox">
-                <div class="buyIn">{{entryFee}}</div>
+
+                <div class="buyIn">{{entryFee}}$ per ticket</div>
                 <div class="paypal">paypal </div>
+
             </div>
         </div>    
         
@@ -57,8 +64,6 @@
                 </ul>  
             {{/each}}
         {{/if}}
-        <div class="paypal">paypal </div>
-        <div>
  
 
       </script>
