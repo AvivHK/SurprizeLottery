@@ -14,23 +14,37 @@
     <div id="container"></div>
 
     <script id="lotteryTemplate" type="text/x-handlebars-template">
-        {{#each lotteryData}}
-            {{#if isProduct}}
-                <h3 class="type">{{productPrize}}</h3>
-                <img src="{{productPic}}" alt="productPrize">
-            {{/if}}
-            <div class ="description">{{productDescription}}</div>
-            <div class="lotteryInfo">
-                <span class="participants">{{users.length}}</span>
-                <span class="dueDate">{{dueDate}}</span>
+        
+    {{#each lotteryData}}
+        
+        <div class="card">
+            <div class="image">
+                <img  src="{{productPic}}" alt="{{productPrize}}">
             </div>
-        <div class="timer">timer</div>
+            {{#if isProduct}}
+                <div class="type">
+                    <h3 >{{productPrize}}</h3>
+                </div>
+            {{/if}}
+            {{#unless isProduct}}
+                <div class="type">
+                    <h3 >{{moneyPrize}}$</h3>
+                </div>
+            {{/unless}}
+            <div class="lotteryInfo">
+                <div class="participants">{{users.length}}</div>
+                <div class="timer">time</div>
+                <div class="dueDate">{{dueDate}}</div>
+            </div>
+            
+            <div class="paymentBox">
+                <div class="buyIn">{{entryFee}}</div>
+                <div class="paypal">paypal </div>
+            </div>
+        </div>    
+        
         {{/each}}
-        <div class="paypal">paypal </div>
-        <div>
- 
-
-      </script>
+    </script>
 
     <script id="WinnerTemplate" type="text/x-handlebars-template">
         {{#if done}}
