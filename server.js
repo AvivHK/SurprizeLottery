@@ -13,13 +13,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Mongoose setup
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 app.use("/", api);
 
 const port = process.env.PORT || 3000;
-app.listen(port, function() {
-  console.log(`Running on port ${port}`);
+app.listen(port, function () {
+    console.log(`Running on port ${port}`);
 });
