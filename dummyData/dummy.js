@@ -398,6 +398,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         },
         {
             entryFee: 50,
+            isProduct: false,
             moneyPrize: 50000,
             usersMax: 100,
             users: [{
@@ -466,7 +467,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         },
         {
             entryFee: 1000,
-            isProduct: true,
+            isProduct: false,
             moneyPrize: 1000000,
             usersMax: 1000,
             users: [{
@@ -528,6 +529,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         },
         {
             entryFee: 50,
+            isProduct: false,
             moneyPrize: 50000,
             usersMax: 1000,
             users: [{
