@@ -1,7 +1,6 @@
-/* body{
-  background-image: url("https://media.giphy.com/media/iGoyzwQnDS6lzNhdZK/giphy.gif");
-  background-repeat: no-repeat;
-} */
+body{
+  background-color: #353738;
+}
 
 #container {
   display: grid;
@@ -54,9 +53,9 @@
 
 .card{
   display: grid;
-  border: 3px solid #433E3F;
+  border: 3px solid #1C7C54;
   border-radius: 5%;
-  background-color: #95a5a6;
+  background-color: #8AB0AB;
   height: 300px;
   width: 280px;
   grid-template-rows: 3fr 1fr 1fr 1fr;
