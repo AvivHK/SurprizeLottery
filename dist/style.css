@@ -8,7 +8,7 @@ body{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1em;
-  font-family:Arial, Helvetica, sans-serif
+  font-family:Arial, Helvetica, sans-serif;
   transform: rotate(6deg);
   
   
@@ -22,9 +22,9 @@ body{
   background-size: 100% 80%;
 
   height: 100%;
-text-align: center;
-border-radius: 50%;
-margin-top:300px
+  text-align: center;
+  border-radius: 50%;
+  margin-top:300px
 
 }
 
@@ -34,23 +34,75 @@ margin-top:300px
   background-repeat: no-repeat;
   background-size: 100% 100%;
  
-height: 100%;
-text-align: center;
-border-radius: 50%;
-margin-top:200px
+  height: 100%;
+  text-align: center;
+  border-radius: 50%;
+  margin-top:200px
 
   }
 
-  #WinnerList{
-    background-image: url("https://previews.123rf.com/images/yupiramos/yupiramos1710/yupiramos171021698/88431270-christmas-wish-list-and-pen-write-design-vector-illustration.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+#WinnerList{
+  background-image: url("https://previews.123rf.com/images/yupiramos/yupiramos1710/yupiramos171021698/88431270-christmas-wish-list-and-pen-write-design-vector-illustration.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-size: 100% 100%;
   
-height: 100%;
-text-align: center;
-border-radius: 50%;
-margin-top:300px
+  height: 100%;
+  text-align: center;
+  border-radius: 50%;
+  margin-top:300px
+
+}
 
 
-    }
+.card{
+  border: 3px solid #433E3F;
+  border-radius: 5%;
+  background-color: #95a5a6;
+  height: fit-content;
+  width: 40vw;
+  grid-template-rows: 3fr 1fr 1fr 1fr;
+  justify-content: center;
+  row-gap: 15px;
+  margin: 10px;
+  padding: 15px;
+
+}
+
+img{
+  height:100px;
+}
+
+.image{
+  display: grid;
+  justify-content: center;
+  margin: 5px;
+}
+
+.type{
+  justify-content: center;
+  display: grid;
+  margin: 5px;
+}
+
+.lotteryInfo{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 10px;
+  padding: 5px;
+  justify-items: center;
+}
+
+.timer{
+
+}
+
+.paymentBox{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px;
+  padding: 5px;
+  justify-items: center;
+}
+
+
