@@ -5,12 +5,12 @@ class Renderer {
       `<div id="homepage">
         <div id="money">money</div>
         <div id="product">product</div>
-        <div id="Winnerlist">Winnerlist</div>
+        <div id="WinnerList">WinnerList</div>
       </div>`
     );
   }
 
-  renderlottery(lotteryData) {
+  renderLottery(lotteryData) {
     const source = $(`#lotteryTemplate`).html();
     const template = Handlebars.compile(source);
     const newHTML = template({ lotteryData });

@@ -35,3 +35,25 @@ router.get('lottery/winners', async (req, res) => {
             res.send(winners)
         })    
 })
+
+router.post('lottery/newLottery', async (req, res) => {
+    let tempLottery = JSON.parse(req.tempLottery)
+    let newLottery = new Lottery({
+        entryFee: tempLottery.entryFee,
+        isProduct: tempLottery.isProduct,
+        moneyPrize: tempLottery.moneyPrize,
+        productPrize: tempLottery.productPrize,
+        productPic: tempLottery.productPic,
+        productDescription: tempLottery.productDescription,
+        dueDate: tempLottery.dueDate,
+        usersIn: tempLottery.usersIn,
+        usersMax: tempLottery.usersMax,
+        endByTime: tempLottery.endByTime,
+        users: tempLottery.users,
+        winner: tempLottery.winner,
+        done: tempLottery.done
+    })
+    newLottery.save()
+})
+
+module.exports = router
