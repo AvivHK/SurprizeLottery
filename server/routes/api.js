@@ -5,16 +5,15 @@ const Lottery = require('../models/Lottery')
 
 
 router.get('/lottery/:isProduct', async (req, res) => {
-
-    const { isProduct } = req.params    
+    const { isProduct } = req.params  
     if (isProduct == "true") {
-        await Lottery.find({ $and: [{ isProduct: true } , { done: false  }] })
+        await Lottery.find({$and: [{ isProduct: true}, {done: false}]})
         .exec((err, lotteries) => {
             res.send(lotteries)
         })
     }
     else {
-        await Lottery.find({ $and: [{ isProduct:  false }, { done:  false }] })
+        await Lottery.find({$and: [{ isProduct: false}, {done: false}]})
         .exec((err, lotteries) => {
             res.send(lotteries)
         })
