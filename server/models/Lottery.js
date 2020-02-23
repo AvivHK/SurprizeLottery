@@ -9,7 +9,6 @@ const lotterySchema = new Schema ({
     productPic: String,
     productDescription: String,
     dueDate: Date,
-    usersIn: Number,
     usersMax: Number,
     endByTime: Boolean,
     users: [Object],
