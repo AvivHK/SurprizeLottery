@@ -5,20 +5,24 @@ const Lottery = require('../models/Lottery')
 
 
 router.get('/lottery/:isProduct', async (req, res) => {
-    const { isProduct } = req.params
-    if (isProduct) {
-        await Lottery.find({ $and: [{ isProduct: { $e: true } }, { done: { $e: false } }] }).exec((err, lotteries) => {
+
+    const { isProduct } = req.params    
+    if (isProduct == "true") {
+        await Lottery.find({ $and: [{ isProduct: true } , { done: false  }] })
+        .exec((err, lotteries) => {
             res.send(lotteries)
         })
     }
     else {
-        await Lottery.find({ $and: [{ isProduct: { $e: false } }, { done: { $e: false } }] }).exec((err, lotteries) => {
+        await Lottery.find({ $and: [{ isProduct:  false }, { done:  false }] })
+        .exec((err, lotteries) => {
             res.send(lotteries)
         })
     }
 })
 
 router.put('/lottery/:lotteryID', async (req, res) => {
+
     const { lotteryID } = req.params;
     let userBody = JSON.parse(req.userBody)
     await Lottery.findById(lotteryID)
@@ -27,12 +31,13 @@ router.put('/lottery/:lotteryID', async (req, res) => {
         })
 })
 
-router.get('/lottery/winners', async function (req, res) {
-    console.log(`jjhdjfh`);
+router.get('/winners', async function (req, res) {
     const winners = []
-    await Lottery.find({ done: { $e: true } })
+    await Lottery.find({ done:  true  })
         .exec(function (err, response) {
-            response.forEach(u => winners.push(u));
+            for(let i = 0; i<response.length; i++){
+                winners.push(response[i].winner)
+            }
             res.send(winners)
         })
 })
