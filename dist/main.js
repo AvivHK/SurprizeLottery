@@ -23,6 +23,8 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
   renderer.renderWinners(WinnersData);
 });
 
+
 $('body').on("click", '#siteName', async function(){
   loadHomePage()
 })
+
