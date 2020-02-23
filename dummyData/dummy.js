@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 const Lottery = require('../server/models/Lottery')
-mongoose.connect('mongodb://localhost/lottery')
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
    
    const dummyLotteries = [
         {
@@ -589,17 +592,17 @@ mongoose.connect('mongodb://localhost/lottery')
     const saveDummyData = async function() {
         for(let l of dummyLotteries) {
             let newLottery = new Lottery({
-                entryFee: l.entryFee || null,
-                isProduct: l.isProduct|| null,
-                moneyPrize: l.moneyPrize|| null,
-                productPrize: l.productPrize||null,
-                productPic: l.productPic||null,
-                productDescription: l.productDescription||null,
-                usersMax: l.usersMax||null,
-                endByTime: l.endByTime||null,
-                users: l.user||null,
-                winner: l.winner||null,
-                done: l.done||null
+                entryFee: l.entryFee, 
+                isProduct: l.isProduct,
+                moneyPrize: l.moneyPrize,
+                productPrize: l.productPrize,
+                productPic: l.productPic,
+                productDescription: l.productDescription,
+                usersMax: l.usersMax,
+                endByTime: l.endByTime,
+                users: l.users,
+                winner: l.winner,
+                done: l.done
             })
             await newLottery.save()
         }
