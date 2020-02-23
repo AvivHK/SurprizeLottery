@@ -1,23 +1,28 @@
-const source = $(`#lottery-template`).html();
-const template = Handlebars.compile(source);
-
 class Renderer {
   renderHomePage() {
     $(`#container`).empty();
     $(`#container`).append(
-      `<div class="homepage">
-        <div class="money">money</div>
-        <div class="product">product</div>
-        <div class="Winnerlist">Winnerlist</div>
+      `<div id="homepage">
+        <div id="money">money</div>
+        <div id="product">product</div>
+        <div id="Winnerlist">Winnerlist</div>
       </div>`
     );
   }
 
-  renderlottery(data) {
-    const newHTML = template({ data });
+  renderlottery(lotteryData) {
+    const source = $(`#lotteryTemplate`).html();
+    const template = Handlebars.compile(source);
+    const newHTML = template({ lotteryData });
     $(`#container`).empty();
     $(`#container`).append(newHTML);
   }
 
-  renderWinners(data) {}
+  renderWinners(lotteryData) {
+    const source = $(`#WinnersTemplate`).html();
+    const template = Handlebars.compile(source);
+    const newHTML = template({ lotteryData });
+    $(`#container`).empty();
+    $(`#container`).append(newHTML);
+  }
 }

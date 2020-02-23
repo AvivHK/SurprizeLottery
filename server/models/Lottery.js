@@ -5,8 +5,9 @@ const lotterySchema = new Schema ({
     entryFee: Number,
     isProduct: Boolean,
     moneyPrize: Number,
-    productPrize: Number,
+    productPrize: String,
     productPic: String,
+    productDscription: String,
     dueDate: Date,
     usersIn: Number,
     usersmax: Number,
@@ -15,6 +16,6 @@ const lotterySchema = new Schema ({
     winner: Object,
     done: Boolean
 })
-const Lottery = mongoose.model(`loterry`, lotterySchema)
+const Lottery = mongoose.model(`lottery`, lotterySchema)
 
 module.exports = Lottery
