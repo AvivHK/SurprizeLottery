@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/519f39c2f0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+
+
+    <script id="lotteryTemplate" type="text/x-handlebars-template">
+        {{#each lotteryData}}
+            {{#if isProduct}}
+                <h3 class="type">{{productPrize}}</h3>
+                <img src="{{productPic}}" alt="productPrize">
+            {{/if}}
+            <div class ="description">{{productDescrition}}</div>
+            <div class="lotteryInfo">
+                <span class="participants">{{users.length}}</span>
+                <span class="dueDate">{{dueDate}}</span>
+            </div>
+        <div class="timer">timer</div>
+        {{/each}}
+        <div class="paypal">paypal </div>
+        <div>
+ 
+
+      </script>
+
+    <script id="WinnerTemplate" type="text/x-handlebars-template">
+        {{#if done}}
+            {{#each lotteryData}}
+                <ul class="winnerList">
+                    <li class="winnerInfo">{{firstName}}-{{LastName}}won{{productPrize }}</li>
+                </ul>  
+            {{/each}}
+        {{/if}}
+        <div class="paypal">paypal </div>
+        <div>
+ 
+
+      </script>
+
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="renderer.js"></script>
+    <script src="lotteryManager.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
