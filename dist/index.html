@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id=SB_CLIENT_ID"></script> -->
     <script src="https://kit.fontawesome.com/519f39c2f0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
@@ -43,63 +42,58 @@
                 </div>
             {{/unless}}
             <div class="lotteryInfo">
-                <div class="participants">{{users.length}}</div>
-                <div class="timer">time</div>
+                <div class="participants">Odds: 1/{{users.length}} </div>
+                <div class="timer">timer</div>
                 <div class="dueDate">{{dueDate}}</div>
             </div>
             
             <div class="paymentBox">
 
                 <div class="buyIn">{{entryFee}}$ per ticket</div>
-                <div class="paypal-button-container"></div>
-            </div>
+                <div><button class="open-button" >Open Form</button></div>
     </div>
+    </div>
+    
     {{/each}}
 
+
+
+
+
+
+
+    
+    
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <p>
+                <div class="paypal-button-container"></div>
+                <script>pay()</script>
+    </p>
+    </form>
+    </div>
+
     <script>
-        paypal.Buttons({
-            style: {
-                shape: 'pill',
-                color: 'black',
-                layout: 'horizontal',
-                label: 'pay',
-                tagline: false
 
-            },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '1'
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                
-                return actions.order.capture().then(function (details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                });
-            }
-        }).render('.paypal-button-container');
-    </script>
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
     </script>
 
-    <script id="WinnerTemplate" type="text/x-handlebars-template">
-        {{#if done}}
-            {{#each lotteryData}}
-                <ul class="winnerList">
-                    <li class="winnerInfo">{{firstName}}-{{LastName}}won{{productPrize }}</li>
-                </ul>  
-            {{/each}}
-        {{/if}}
-
-      </script>
 
 
-
-
-
+    <script id="winnersTemplate" type="text/x-handlebars-template">
+        {{#each winnerData}}
+            <ul class="winnerList">
+                <li class="winnerInfo">
+                    <div class="name">{{firstName}} {{lastName}} </div>
+                     <div class="won">
+                won {{productPrize}}</li>
+            </div>
+            </ul>  
+        {{/each}}
+  </script>
 
 
 
@@ -107,11 +101,30 @@
 
 
 
-    <script src="/handlebars/dist/handlebars.js"></script>
-    <script src="/jquery/dist/jquery.js"></script>
-    <script src="renderer.js"></script>
-    <script src="lotteryManager.js"></script>
-    <script src="main.js"></script>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/handlebars/dist/handlebars.js"></script>
+<script src="/jquery/dist/jquery.js"></script>
+<script src="renderer.js"></script>
+<script src="lotteryManager.js"></script>
+<script src="main.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         {
             entryFee: 10,
             isProduct: true,
-            productPrize: 5000,
+            productPrize: "Electric Bike",
             productPic: "https://www.cwc.co.il/images/itempics/2403.jpg",
             productDescription: "Electric Bike",
             usersMax: 50,
@@ -79,7 +79,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         {
             entryFee: 5,
             isProduct: true,
-            productPrize: 10000,
+            productPrize: "Round-Trip",
             productPic: "https://www.liberaldictionary.com/wp-content/uploads/2019/01/round-trip-ticket-2.png",
             productDescription: "Round-Trip",
             usersMax: 2000,
@@ -144,7 +144,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         {
             entryFee: 50,
             isProduct: true,
-            productPrize: 50000,
+            productPrize: "Car",
             productPic: "https://stimg.cardekho.com/images/carexteriorimages/630x420/Maruti/Swift/6318/1572069250647/front-left-side-47.jpg?tr-371,e-sharpen",
             productDescription: "Car",
             usersMax: 1000,
@@ -209,7 +209,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         {
             entryFee: 30,
             isProduct: true,
-            productPrize: "3000",
+            productPrize: "Dyson v11",
             productPic: "https://www.netoneto.co.il/images/itempics/V7TRIGGER_15052019093705_large.jpg",
             productDescription: "dyson v11",
             usersMax: 10,
@@ -273,7 +273,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         {
             entryFee: 22,
             isProduct: true,
-            productPrize: 2200,
+            productPrize: "Drone",
             productPic: "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XEP64_Z_P_6958265159602_1.png",
             productDescription: "Drone",
             usersMax: 10,
@@ -398,6 +398,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         },
         {
             entryFee: 50,
+            isProduct: false,
             moneyPrize: 50000,
             usersMax: 100,
             users: [{
@@ -461,12 +462,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
                 lastName: `gilboa`,
                 email: `ohadgil@gmail.com`,
                 address: `eilat`,
-                done: true
-            }
+            },
+            done: true
         },
         {
             entryFee: 1000,
-            isProduct: true,
+            isProduct: false,
             moneyPrize: 1000000,
             usersMax: 1000,
             users: [{
@@ -528,6 +529,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
         },
         {
             entryFee: 50,
+            isProduct: false,
             moneyPrize: 50000,
             usersMax: 1000,
             users: [{

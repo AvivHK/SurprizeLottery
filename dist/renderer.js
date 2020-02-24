@@ -16,10 +16,11 @@ class Renderer {
     $(`#container`).append(newHTML);
   }
 
-  renderWinners(lotteryData) {
-    const source = $(`#WinnersTemplate`).html();
+  renderWinners(winnerData) {
+    const source = $(`#winnersTemplate`).html();
     const template = Handlebars.compile(source);
-    const newHTML = template({ lotteryData });
+    const newHTML = template({winnerData});
+    console.log(winnerData)
     $(`#container`).empty();
     $(`#container`).append(newHTML);
   }
