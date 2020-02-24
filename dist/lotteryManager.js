@@ -1,3 +1,6 @@
+// const dummy = require('../dummyData/dummy')
+
+// console.log(dummy[9]);
 class LotteryManager {
 
   async getWinners() {
@@ -20,12 +23,24 @@ class LotteryManager {
         email: `infoFromPaypal[email]`,
         address: `infoFromPaypal[address]`
       },
-      success: function(data) {
+      success: function (data) {
         console.log(`sent ${data}`);
       },
-      error: function() {
+      error: function () {
         console.log(`failed sending`);
       }
     });
   }
+  chooseLotteryWinner(lotteryID) {
+    const lotteryData = getOneLottery(lotteryID)
+    this.addAWinner(lotteryID,lotteryData.users[Math.floor(Math.random() * users.length)])
+
+return winner
+  }
+
 }
+// const winner = new LotteryManager()
+
+
+//  winner.lotteryWinner(dummy[9])
+
