@@ -8,7 +8,6 @@ loadHomePage();
 
 $(`body`).on(`click`, `#money`, async function () {
   let moneyData = await lotteryManager.getLottery(false);
-  console.log(moneyData)
   renderer.renderLottery(moneyData);
 });
 
@@ -43,8 +42,7 @@ $('body').on("click", '#siteName', async function () {
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
   let id = $(this).closest('.card').data('id')
-  let myForm = document.getElementById("myForm");
-  myForm.style.display = "block";
+  document.getElementById("myForm").style.display = "block";
   pay(amount,id)
 })
 
@@ -63,7 +61,7 @@ function pay(amount,id) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: (`${amount}`).toString()
+            value: (amount).toString()
           }
         }]
       });
