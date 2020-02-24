@@ -7,55 +7,6 @@ const loadHomePage = function () {
 loadHomePage();
 
 
-
-//PopUpTimer
-
-
-//Timer Functions
-
-function getTimeRemaining(){
-  let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
-
-  let t = Date.parse(dueDate) - Date.parse(new Date());
-  let seconds = Math.floor( (t/1000) % 60 );
-  let minutes = Math.floor( (t/1000/60) % 60 );
-  let hours = Math.floor( (t/(1000*60*60)) % 24 );
-  let days = Math.floor( t/(1000*60*60*24) );
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
-function initializeClock(dueDate){
-  let clock = document.getElementsByClassName('timer');
-  let lotteryID = $(this).closest('.card').data.id()
-    let timeInterval = setInterval(function(){
-    let t = getTimeRemaining(dueDate);
-    clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
-    if(t.total<=0){
-      lotteryManager.chooseLotteryWinner(lotteryID)
-      clearInterval(timeInterval);
-    }
-  },1000);
-}
-
-function updateClock(){
-  let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
-  let t = getTimeRemaining(dueDate);
-  let lotteryID = $(this).closest('.card').data().id
-  clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
-  if(t.total<=0){
-
-    lotteryManager.chooseLotteryWinner(lotteryID)
-    clearInterval(timeInterval);
-  }
-}
-
-
-
 //Homepage OnClicks()
 
 $(`body`).on(`click`, `#money`, async function () {
@@ -109,9 +60,9 @@ $('body').on("click", '.goAddProduct', function () {
 })
 
 $('body').on("click", '#moneySubmit', async function(){
-  let newDueDate = $("#theDueDate").val()
+  let newDueDate = $(".theDueDate").val()
   let newMoneyPrize = $("#theMoneyPrize").val()
-  let newEntreeFee = $("#theEntryFee").val()
+  let newEntreeFee = $(".theEntryFee").val()
   let newLottery = {
     entryFee: newEntreeFee,
     isProduct: false,
@@ -125,11 +76,31 @@ $('body').on("click", '#moneySubmit', async function(){
   lotteryManager.addNewLottery(newLottery)
 })
 
-
-
-
-
-
+$('body').on("click", '#productSubmit', async function(){
+  let newDueDate = $(".theDueDate").val()
+  let newType = $("input[name='productType']:checked").val();
+  let newProductPrize = $("#theProduct").val()
+  let newEntreeFee = $(".theEntryFee").val()
+  let newPic = $("#thePic").val()
+  let newDescript = $("#theDescription").val()
+  let newLottery = {
+    entryFee: newEntreeFee,
+    isProduct: true,
+    productType: newType,
+    productPrize: newProductPrize,
+    productPic: newPic,
+    productDescription: newDescript,
+    dueDate: newDueDate,
+    done: false
+  }
+  $(".theDueDate").val("")
+  $("input[name='productType']:checked").val("")
+  $("#theProduct").val("")
+  $(".theEntryFee").val("")
+  $("#thePic").val("")
+  $("#theDescription").val("")
+  lotteryManager.addNewLottery(newLottery)
+})
 
 //PayPal Functions
 
@@ -195,32 +166,32 @@ async function div_show(id) {
   }
 
   function timer(dueDate){
-            // Set the date we're counting down to
-            let countDownDate = new Date(dueDate).getTime();
-            
-            // Update the count down every 1 second
-            interval = setInterval(function() {
-              
-              // Get today's date and time
-              let now = new Date().getTime();
-                
-              // Find the distance between now and the count down date
-              let distance = countDownDate - now;
-                
-              // Time calculations for days, hours, minutes and seconds
-              let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-              let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-              let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-              // Output the result in an element with id="demo"
-              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-              + minutes + "m " + seconds + "s ";
-                
-              // If the count down is over, write some text 
-              if (distance < 0) {
-                clearInterval(interval);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-              }
-            }, 1000);
+    // Set the date we're counting down to
+    let countDownDate = new Date(dueDate).getTime();
+    
+    // Update the count down every 1 second
+    interval = setInterval(function() {
+      
+      // Get today's date and time
+      let now = new Date().getTime();
+        
+      // Find the distance between now and the count down date
+      let distance = countDownDate - now;
+        
+      // Time calculations for days, hours, minutes and seconds
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(interval);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
   }
