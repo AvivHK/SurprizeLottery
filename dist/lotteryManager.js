@@ -54,18 +54,39 @@ class LotteryManager {
     });
   }
 
-  
+
   async chooseLotteryWinner(lotteryID) {
     const lotteryData = await getOneLottery(lotteryID)
     this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * users.length)])
   }
+
+  async addNewLottery(lotteryDetails){
+    await $.ajax({
+      type: "POST",
+      url: `/lottery/newLottery`,
+      data: {
+        entryFee: lotteryDetails.entryFee,
+        isProduct: lotteryDetails.isProduct,
+        moneyPrize: lotteryDetails.moneyPrize,
+        productType: lotteryDetails.productType,
+        productPrize: lotteryDetails.productPrize,
+        productPic: lotteryDetails.productPic,
+        productDescription: lotteryDetails.productDescription,
+        dueDate: lotteryDetails.dueDate,
+        usersMax: lotteryDetails.usersMax,
+        endByTime: lotteryDetails.endByTime,
+        done: false
+      },
+      success: function (data) {
+        console.log(`sent ${data}`);
+      },
+      error: function () {
+        console.log(`failed sending`);
+      }
+    });
+  }
   
-  // async addLottery(){
-  //   await $.ajax({
-  //     type: "POST",
-  //     url: `lottery/newLottery`
-  //   })
-  // }
+
 
 
 

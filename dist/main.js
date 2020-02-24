@@ -98,17 +98,38 @@ $('body').on("click", '.goWinner', async function () {
 })
 
 
-$('body').on("click", '.goProduct', async function () {
+$('body').on("click", '.goAddMoney', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
-  let productData = await lotteryManager.getLottery(true);
-  renderer.renderLottery(productData);
+  renderer.renderNewMoneyLottery()
 })
 
-$('body').on("click", '.goWinner', async function () {
+$('body').on("click", '.goAddProduct', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
-  let winnersData = await lotteryManager.getWinners();
-  renderer.renderWinners(winnersData);
+  renderer.renderNewProductLottery()
 })
+
+$('body').on("click", '#moneySubmit', async function(){
+  let newDueDate = $("#theDueDate").val()
+  let newMoneyPrize = $("#theMoneyPrize").val()
+  let newEntreeFee = $("#theEntryFee").val()
+  let newLottery = {
+    entryFee: newEntreeFee,
+    isProduct: false,
+    moneyPrize: newMoneyPrize,
+    dueDate: newDueDate,
+    done: false
+  }
+  $("#theDueDate").val("")
+  $("#theMoneyPrize").val("")
+  $("#theEntryFee").val("")
+  lotteryManager.addNewLottery(newLottery)
+})
+
+
+
+
+
+
 
 //PayPal Functions
 
@@ -116,6 +137,7 @@ $(`body`).on(`click`, `.buyPayPal`, function() {
   let amount = parseInt($(this).siblings(`.popUpBuyIn`).text())
   console.log(amount)
   let id = $(this).closest('.popUpCard').data('id')
+
   pay(amount,id)
 })
 
