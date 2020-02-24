@@ -1,3 +1,4 @@
+
 class LotteryManager {
 
   async getWinners() {
@@ -44,12 +45,21 @@ class LotteryManager {
         email: details.payer.email_address,
         address: details.payer.address.address_line_1 + ' ' + details.payer.address.admin_area_2 + ' ' + details.payer.address.admin_area_1 + ' ' + details.payer.address.postal_code + ' ' + details.payer.address.country_code
       },
-      success: function(data) {
+      success: function (data) {
         console.log(`sent ${data}`);
       },
-      error: function() {
+      error: function () {
         console.log(`failed sending`);
       }
     });
   }
+  chooseLotteryWinner(lotteryID) {
+    const lotteryData = getOneLottery(lotteryID)
+    this.addAWinner(lotteryID,lotteryData.users[Math.floor(Math.random() * users.length)])
+
+return winner
+  }
+
 }
+
+
