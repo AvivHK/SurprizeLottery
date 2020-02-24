@@ -426,7 +426,7 @@ li{
 .popUpCard{
   display: grid;
   grid-template-rows:1fr 1fr 1fr 1fr;
-  height: 500px;
+  height: 600px;
   width: 800px;
 }
 
