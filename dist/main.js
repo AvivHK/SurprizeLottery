@@ -63,13 +63,28 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
   renderer.renderWinners(winnersData);
 });
 
-
-$('body').on("click", '#siteName', function () {
+$('body').on("click", '.goHome', function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
   loadHomePage()
 })
 
+$('body').on("click", '.goMoney', async function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  let moneyData = await lotteryManager.getLottery(false);
+  renderer.renderLottery(moneyData);
+})
 
+$('body').on("click", '.goProduct', async function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  let productData = await lotteryManager.getLottery(true);
+  renderer.renderLottery(productData);
+})
 
+$('body').on("click", '.goWinner', async function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  let winnersData = await lotteryManager.getWinners();
+  renderer.renderWinners(winnersData);
+})
 
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())

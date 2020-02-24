@@ -28,11 +28,35 @@
         data-sdk-integration-source="button-factory">
     </script>
 
-    <div id="header">
-        <h1 id="siteName">Surprize Lottery</h1>
-    </div>
-    <div id="container"></div>
+    
 
+    <div id="header">
+        
+        <nav role="navigation">
+            <div id="menuToggle">
+    
+                <input type="checkbox" />
+        
+                <span></span>
+                <span></span>
+                <span></span>
+                
+                <ul id="menu">
+                    <li class="goHome">Home</li>
+                    <li class="goMoney">Money Lotteries</li>
+                    <li class="goProduct">Product Lotteries</li>
+                    <li class="goWinner">Winners List</li>
+                </ul>
+            </div>
+        </nav>
+    
+
+        <h1 id="siteName" class="goHome">Surprize Lottery</h1>
+    </div>
+
+    <div id="container"></div>
+    
+    
     <script id="lotteryTemplate" type="text/x-handlebars-template">
         {{#each lotteryData}}
           <div class="card" data-id={{_id}}>
