@@ -25,19 +25,19 @@
 <body>
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"
         data-sdk-integration-source="button-factory"></script>
-  
+
 
     <div id="header">
-        
+
         <nav role="navigation">
             <div id="menuToggle">
-    
-                <input type="checkbox" />
-        
+
+                <input type="checkbox">
+
                 <span></span>
                 <span></span>
                 <span></span>
-                
+              
                 <ul id="menu">
                     <li class="goHome">Home</li>
                     <li class="goMoney">Money Lotteries</li>
@@ -48,6 +48,7 @@
                 </ul>
             </div>
         </nav>
+
     
 
         <h1 id="siteName" class="goHome">Surprize Lottery</h1>
@@ -56,8 +57,18 @@
     <div id="container"></div>
     
     <script id="lotteryTemplate" type="text/x-handlebars-template">
+        
+        <div class="filter dropdown">
+            <h5 class="filters Money dropbtn">Money Lottery filter</h5>
+            <div class="dropdown-content">
+                <a href="#">From 0 to 10000</a>
+                <a href="#">From 10000 to 500000</a>
+                <a href="#">From 50000 to Max</a>
+              </div>
+            <h5 class="filters Product">Product Lottery filter</h5>
+        </div>
         {{#each lotteryData}}
-          <div class="card" data-id={{_id}}>
+                <div class="card" data-id={{_id}}>
                 {{#if isProduct}}
                     <div class="prize">
                         <img  src="{{productPic}}" alt="{{productPrize}}">
@@ -74,9 +85,11 @@
                         <h3 >{{moneyPrize}}$</h3>
                     </div>
                 {{/unless}}
+                
                 <div class="lotteryInfo">
                     <div class="participants">Odds: 1/{{users.length}} </div>
-                    <div class="timer"></div>
+
+                    <div class="needToChange"></div>
                     <div class="dueDate">{{dueDate}}</div>
                 </div>
                 <div class="paymentBox">
@@ -100,45 +113,47 @@
     <div id="popUpCard">
         <div id="popupContact">
             <form id="form">
-                <div id="popUpContainer"></div>
                 <div id="close" onclick="div_hide()">X</div>
+                <div id="popUpContainer"></div>
             </form>
         </div>
     </div>
 
-    <script>
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";}
-    </script>
+
 
     <script id="popUpTemplate" type="text/x-handlebars-template">
-        <div class="card" data-id={{_id}}>
+        <div class="popUpCard" data-id={{_id}}>
             {{#if isProduct}}
-                <div class="prize">
-                    <img  src="{{productPic}}" alt="{{productPrize}}">
+                <div class="popUpPrize">
+                    <img class="popUpImage" src="{{productPic}}" alt="{{productPrize}}">
                 </div>
-                <div class="type">
-                    <h3 >{{productPrize}}</h3>
+                <div class="popUpType">
+                    <h3 class="popUpProductPrize">{{productPrize}}</h3>
+                    <h3 class="popUpProductDescription">{{productDescription}}</h3>
                 </div>
             {{/if}}
             {{#unless isProduct}}
-                <div class="prize">
-                    <h1>{{moneyPrize}} DOLLARS</h1>
+                <div class="popUpPrize">
+                    <h1 class="popUpMoneyPrize">{{moneyPrize}}$ DOLLARS</h1>
                 </div>
-                <div class="type">
-                    <h3 >{{moneyPrize}}$</h3>
+                <div class="popUpType">
+                    <h3>Make your money NOW!</h3>
                 </div>
             {{/unless}}
-            <div class="lotteryInfo">
-                <div class="participants">Odds: 1/{{users.length}} </div>
-                <div class="timer">timer</div>
-                <div class="dueDate">{{dueDate}}</div>
+            <div class="popUpLotteryInfo">
+                <div class="popUpParticipants">Participants: {{users.length}} </div>
+                <div class="popUpTimer"><p id="demo"></p></div>
+                <div class="popUpDueDate" data-id="{{_id}}">{{dueDate}}</div>
             </div>
-            <div class="paymentBox">
-            <div class="buyIn">{{entryFee}}$ per ticket</div>
-            <div class="paypal-button-container"></div>
+            <div class="popUpPaymentBox">
+                <div class="popUpBuyIn">{{entryFee}}$ per ticket</div>
+                <div class="buyPayPal">Buy Ticket</div>
+                <div id="paypal-button-container"></div>
             </div>
-        </div>  
+        </div> 
+        <script>
+            
+            </script>
     </script>
 
     <script src="/handlebars/dist/handlebars.js"></script>

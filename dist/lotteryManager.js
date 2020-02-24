@@ -54,6 +54,7 @@ class LotteryManager {
     });
   }
 
+
   async chooseLotteryWinner(lotteryID) {
     const lotteryData = await getOneLottery(lotteryID)
     this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * users.length)])
@@ -87,9 +88,5 @@ class LotteryManager {
   
 
 
-
-
-
-}
 
 
