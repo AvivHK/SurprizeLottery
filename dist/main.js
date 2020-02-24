@@ -88,10 +88,34 @@ $('body').on("click", '.goWinner', async function () {
   renderer.renderWinners(winnersData);
 })
 
-$('body').on("click", '.goAdd', function () {
+$('body').on("click", '.goAddMoney', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
-  renderer.renderAddNewLottery()
+  renderer.renderNewMoneyLottery()
 })
+
+$('body').on("click", '.goAddProduct', function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  renderer.renderNewProductLottery()
+})
+
+$('body').on("click", '#moneySubmit', async function(){
+  let newDueDate = $("#theDueDate").val()
+  let newMoneyPrize = $("#theMoneyPrize").val()
+  let newEntreeFee = $("#theEntryFee").val()
+  let newLottery = {
+    entryFee: newEntreeFee,
+    isProduct: false,
+    moneyPrize: newMoneyPrize,
+    dueDate: newDueDate,
+    done: false
+  }
+  $("#theDueDate").val("")
+  $("#theMoneyPrize").val("")
+  $("#theEntryFee").val("")
+  lotteryManager.addNewLottery(newLottery)
+})
+
+
 
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
