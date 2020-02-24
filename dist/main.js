@@ -101,10 +101,10 @@ $('body').on("click", '.goWinner', async function () {
 
 //PayPal Functions
 
-$(`body`).on(`click`, `.open-button`, function() {
+$(`body`).on(`click`, `.buyPayPal`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
   let id = $(this).closest('.card').data('id')
-  document.getElementById("myForm").style.display = "block";
+  // document.getElementById("myForm").style.display = "block";
   pay(amount,id)
 })
 
