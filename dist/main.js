@@ -7,10 +7,16 @@ const loadHomePage = function () {
 loadHomePage();
 
 
+//PopUpTimer
+
+
+
+
 
 //Timer Functions
 
-function getTimeRemaining(dueDate){
+function getTimeRemaining(){
+  let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
   let t = Date.parse(dueDate) - Date.parse(new Date());
   let seconds = Math.floor( (t/1000) % 60 );
   let minutes = Math.floor( (t/1000/60) % 60 );
@@ -26,13 +32,13 @@ function getTimeRemaining(dueDate){
 }
 
 function initializeClock(dueDate){
-  let clock = document.getElementsByClassName('timer');
+  var clock = document.getElementsByClassName('timer');
   let lotteryID = $(this).closest('.card').data.id()
-  let timeInterval = setInterval(function(){
+    var timeInterval = setInterval(function(){
     let t = getTimeRemaining(dueDate);
     clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
     if(t.total<=0){
-      chooseLotteryWinner(lotteryID)
+      lotteryManager.chooseLotteryWinner(lotteryID)
       clearInterval(timeInterval);
     }
   },1000);
@@ -42,10 +48,9 @@ function updateClock(){
   let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
   let t = getTimeRemaining(dueDate);
   let lotteryID = $(this).closest('.card').data().id
-  let clock = document.getElementsByClassName('timer');
   clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
   if(t.total<=0){
-    chooseLotteryWinner(lotteryID)
+    lotteryManager.chooseLotteryWinner(lotteryID)
     clearInterval(timeInterval);
   }
 }
