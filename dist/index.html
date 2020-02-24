@@ -23,7 +23,7 @@
     <script id="lotteryTemplate" type="text/x-handlebars-template">
     {{#each lotteryData}}
     
-        <div class="card">
+        <div class="card" data-id={{_id}}>
             
             {{#if isProduct}}
                 <div class="prize">
@@ -56,75 +56,34 @@
     
     {{/each}}
 
+    </script>
 
-
-
-
-
-
-    
-    
     <div class="form-popup" id="myForm">
         <form action="/action_page.php" class="form-container">
             <p>
                 <div class="paypal-button-container"></div>
-                <script>pay()</script>
-    </p>
-    </form>
+            </p>
+        </form>
     </div>
-
-    <script>
-
-
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
-    </script>
-
-
 
     <script id="winnersTemplate" type="text/x-handlebars-template">
         {{#each winnerData}}
-            <ul class="winnerList">
-                <li class="winnerInfo">
+            <div class="winnerList">
+                <div class="winnerInfo">
                     <div class="name">{{firstName}} {{lastName}} </div>
                      <div class="won">
-                won {{productPrize}}</li>
+                won {{productPrize}}</div>
             </div>
-            </ul>  
+        </div>  
         {{/each}}
   </script>
 
 
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="/handlebars/dist/handlebars.js"></script>
-<script src="/jquery/dist/jquery.js"></script>
-<script src="renderer.js"></script>
-<script src="lotteryManager.js"></script>
-<script src="main.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="renderer.js"></script>
+    <script src="lotteryManager.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

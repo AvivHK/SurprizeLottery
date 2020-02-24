@@ -20,7 +20,6 @@ class Renderer {
     const source = $(`#winnersTemplate`).html();
     const template = Handlebars.compile(source);
     const newHTML = template({winnerData});
-    console.log(winnerData)
     $(`#container`).empty();
     $(`#container`).append(newHTML);
   }

@@ -41,12 +41,16 @@ $('body').on("click", '#siteName', async function () {
 
 
 $(`body`).on(`click`, `.open-button`, function() {
-  console.log(parseInt($(this).closest(`div`).siblings(`.buyIn`).text()))
+  let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
+  let id = $(this).closest('.card').data('id')
   let myForm = document.getElementById("myForm");
   myForm.style.display = "block";
+  pay(amount,id)
 })
 
-function pay(amount) {
+
+
+function pay(amount,id) {
   paypal.Buttons({
     style: {
       shape: 'pill',
@@ -59,14 +63,14 @@ function pay(amount) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: (`18`).toString()
+            value: (`${amount}`).toString()
           }
         }]
       });
     },
     onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {
-        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+      return actions.order.capture().then(function (details) {      
+        lotteryManager.addUserToLottery(id,details)
       });
     }
   }).render('.paypal-button-container');
