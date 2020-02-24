@@ -15,9 +15,9 @@ router.get('/lottery/:isProduct', async (req, res) => {
     }
     else {
         await Lottery.find({ $and: [{ isProduct: false }, { done: false }] })
-        .exec((err, lotteries) => {
-            res.send(lotteries)
-        })
+            .exec((err, lotteries) => {
+                res.send(lotteries)
+            })
     }
 })
 
@@ -57,6 +57,7 @@ router.post('/lottery/newLottery', async (req, res) => {
 
 router.put('/lottery/:lotteryID', async (req, res) => {
     const { lotteryID } = req.params;
+    console.log(lotteryID)
     let body = JSON.parse(JSON.stringify(req.body));
     await Lottery.findOneAndUpdate({ _id: lotteryID },
         { $push: { users: body } })
@@ -95,16 +96,7 @@ router.put('/winner/:lotteryID', async (req, res) => {
     let body = JSON.parse(JSON.stringify(req.body));
     await Lottery.findOneAndUpdate({ _id: lotteryID },
         { winner: body, done: true })
-})
-
-
-
-//Get Route- Admin Adds Lotteries
-
-router.get('/admin/:password', async (req,res)=>{
-    let {password} = req.params
-    res.send('./admin.html')
-
+    res.end();
 })
 
 

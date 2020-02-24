@@ -1,17 +1,14 @@
 body{
   background-color: #ecf0f1;
   margin: 0;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-  
+  overflow-x: hidden; /* Hide horizontal scrollbar */  
 }
-
 
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1em;
-  font-family:Arial, Helvetica, sans-serif;
-  
+  font-family:Arial, Helvetica, sans-serif; 
 }
 
 #money{

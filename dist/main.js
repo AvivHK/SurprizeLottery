@@ -1,6 +1,6 @@
 const lotteryManager = new LotteryManager();
 const renderer = new Renderer();
-
+let interval = 0;
 const loadHomePage = function () {
   renderer.renderHomePage();
 };
@@ -9,9 +9,6 @@ loadHomePage();
 
 
 //PopUpTimer
-
-
-
 
 
 //Timer Functions
@@ -33,9 +30,9 @@ function getTimeRemaining(){
   };
 }
 function initializeClock(dueDate){
-  var clock = document.getElementsByClassName('timer');
+  let clock = document.getElementsByClassName('timer');
   let lotteryID = $(this).closest('.card').data.id()
-    var timeInterval = setInterval(function(){
+    let timeInterval = setInterval(function(){
     let t = getTimeRemaining(dueDate);
     clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
     if(t.total<=0){
@@ -116,9 +113,9 @@ $('body').on("click", '.goWinner', async function () {
 //PayPal Functions
 
 $(`body`).on(`click`, `.buyPayPal`, function() {
-  let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
-  let id = $(this).closest('.card').data('id')
-  // document.getElementById("myForm").style.display = "block";
+  let amount = parseInt($(this).siblings(`.popUpBuyIn`).text())
+  console.log(amount)
+  let id = $(this).closest('.popUpCard').data('id')
   pay(amount,id)
 })
 
@@ -135,23 +132,32 @@ function pay(amount,id) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: (amount).toString()
+            value: amount
           }
         }]
       });
     },
     onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {      
+      return actions.order.capture().then(function (details) {   
+        console.log(id)   
         lotteryManager.addUserToLottery(id,details)
       });
     }
-  }).render('.paypal-button-container');
+  }).render('#paypal-button-container');
 }
 
 
-$('body').on('click','.card', function(){
+
+
+
+
+//PopUp Functions
+
+$('body').on('click','.card', async function(){
   let id = $(this).data('id')
+  let lottery = await lotteryManager.getOneLottery(id);
   div_show(id)
+  timer(lottery.dueDate)
 })
 
 async function div_show(id) {
@@ -162,4 +168,37 @@ async function div_show(id) {
 
   function div_hide(){
   document.getElementById('popUpCard').style.display = "none";
+  clearInterval(interval);
+  document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+
+  function timer(dueDate){
+            // Set the date we're counting down to
+            let countDownDate = new Date(dueDate).getTime();
+            
+            // Update the count down every 1 second
+            interval = setInterval(function() {
+              
+              // Get today's date and time
+              let now = new Date().getTime();
+                
+              // Find the distance between now and the count down date
+              let distance = countDownDate - now;
+                
+              // Time calculations for days, hours, minutes and seconds
+              let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+              // Output the result in an element with id="demo"
+              document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+              + minutes + "m " + seconds + "s ";
+                
+              // If the count down is over, write some text 
+              if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+              }
+            }, 1000);
   }
