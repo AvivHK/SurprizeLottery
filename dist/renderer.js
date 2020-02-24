@@ -43,8 +43,56 @@ class Renderer {
 
   }
 
-  renderAddNewLottery(lotteryData) {
+  renderAddNewLottery() {
     $(`#container`).empty();
-    $(`#container`).append()
+    $(`#container`).append(`<div>
+    <input type="radio" id="checkIsProduct" name="prodORmon">
+    <label for="checkIsProduct">Product prize</label><br>
+    
+    <input type="radio" id="checkIsMoney" name="prodORmon">
+    <label for="checkIsMoney">Money prize</label><br>
+
+    <label for="theDueDate">Lottery Due Date</label>
+    <input type="datetime-local" id="theDueDate">
+
+    <h4>Fill for <strong>Money</strong> prizes only!</h4>
+    
+    <label for="theMoneyPrize">How much is the lottery for?</label>
+    <input type="number" id="theMoneyPrize"><br>
+</div>
+
+<div>
+    <h4>Fill for <strong>Product</strong> prizes only!</h4>
+    
+    <input type="radio" id="vehicle" name="productType">
+    <label for="vehicle">Vehicle</label><br>
+
+    <input type="radio" id="gadget" name="productType">
+    <label for="gadget">Gadget</label><br>
+
+    <input type="radio" id="electonic" name="productType">
+    <label for="electonic">Electrinic device</label><br>
+
+    <input type="radio" id="clothing" name="productType">
+    <label for="clothing">Clothing item</label><br>
+
+    <input type="radio" id="furniture" name="productType">
+    <label for="furniture">Furniture</label><br>
+
+    <input type="radio" id="other" name="productType">
+    <label for="other">Other</label><br>
+  </div>
+  <div>
+    <label for="theProduct">What's the product</label><br>
+    <input type="text" id="theProduct"><br>
+
+    <label for="thePic">Picture URL</label><br>
+    <input type="text" id="thePic" style="width: 200px;"><br>
+
+    <label for="theDescription">Product Description</label><br>
+    <textarea id="theDescription" style="width:200px; height:200px;" placeholder="type something"></textarea><br>
+</div>
+
+    `)
   }
 }

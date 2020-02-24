@@ -88,6 +88,11 @@ $('body').on("click", '.goWinner', async function () {
   renderer.renderWinners(winnersData);
 })
 
+$('body').on("click", '.goAdd', function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  renderer.renderAddNewLottery()
+})
+
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
   let id = $(this).closest('.card').data('id')
