@@ -46,6 +46,7 @@ router.get('/winners', async function (req, res) {
     const winners = []
     await Lottery.find({ done: true })
         .exec(function (err, response) {
+            console.log(response)
             for (let i = 0; i < response.length; i++) {
                 winners.push({
                     firstName: response[i].winner.firstName,
