@@ -88,7 +88,6 @@ router.get('/winners', async function (req, res) {
         })
 })
 
-
 // Put Route- Add a winner
 
 router.put('/winner/:lotteryID', async (req, res) => {
