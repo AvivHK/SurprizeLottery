@@ -20,15 +20,26 @@ router.get('/lottery/:isProduct', async (req, res) => {
     }
 })
 
-router.put('/lottery/:lotteryID', async (req, res) => {
-
-
+router.get('/oneLottery/:lotteryID', async (req, res) => {
     const { lotteryID } = req.params;
-    let userBody = JSON.parse(req.userBody)
-    await Lottery.findById(lotteryID)
-        .exec(function (err, response) {
-            response.users.push(userBody)
-        })
+    await Lottery.findById(lotteryId).exec(function (err, result) {
+        res.send(result)
+    })
+})
+
+
+router.put('/lottery/:lotteryID', async (req, res) => {
+    const { lotteryID } = req.params;
+    let body = JSON.parse(JSON.stringify(req.body));
+    await Lottery.findOneAndUpdate({ _id: lotteryID },
+        { $push: { users: body } })
+})
+
+router.put('/winner/:lotteryID', async (req, res) => {
+    const { lotteryID } = req.params;
+    let body = JSON.parse(JSON.stringify(req.body));
+    await Lottery.findOneAndUpdate({ _id: lotteryID },
+        { winner: body, done: true })
 })
 
 router.get('/winners', async function (req, res) {
@@ -45,7 +56,7 @@ router.get('/winners', async function (req, res) {
                     productPrize: response[i].productPrize,
                     productDescription: response[i].productDescription,
                     moneyPrize: response[i].moneyPrize,
-                    // peoplePayToGetIn: response[i].user.length,
+                    peoplePayToGetIn: response[i].users.length,
                     productPic: response[i].productPic,
                 })
             }

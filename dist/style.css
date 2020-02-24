@@ -1,6 +1,8 @@
 body{
   background-color: #ecf0f1;
   margin: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+
 }
 
 #container {
@@ -89,6 +91,7 @@ img{
 
 .prize{
   display: grid;
+  max-height: 80px;
   justify-content: center;
   margin: 5px;
 }

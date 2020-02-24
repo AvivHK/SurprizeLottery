@@ -46,13 +46,10 @@ function updateClock(){
   }
 }
 
-updateClock(); // run function once at first to avoid delay
-let timeinterval = setInterval(updateClock,1000);
 
 
 $(`body`).on(`click`, `#money`, async function () {
   let moneyData = await lotteryManager.getLottery(false);
-  console.log(moneyData)
   renderer.renderLottery(moneyData);
 });
 
@@ -72,4 +69,38 @@ $('body').on("click", '#siteName', async function () {
 })
 
 
+$(`body`).on(`click`, `.open-button`, function() {
+  let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
+  let id = $(this).closest('.card').data('id')
+  document.getElementById("myForm").style.display = "block";
+  pay(amount,id)
+})
+
+
+
+function pay(amount,id) {
+  paypal.Buttons({
+    style: {
+      shape: 'pill',
+      color: 'black',
+      layout: 'horizontal',
+      label: 'pay',
+      tagline: true
+    },
+    createOrder: function (data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: (amount).toString()
+          }
+        }]
+      });
+    },
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function (details) {      
+        lotteryManager.addUserToLottery(id,details)
+      });
+    }
+  }).render('.paypal-button-container');
+}
 
