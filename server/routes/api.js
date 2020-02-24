@@ -69,6 +69,7 @@ router.post('/lottery/newLottery', async (req, res) => {
     let newLottery = new Lottery({
         entryFee: tempLottery.entryFee,
         isProduct: tempLottery.isProduct,
+        productType:tempLottery.productType,
         moneyPrize: tempLottery.moneyPrize,
         productPrize: tempLottery.productPrize,
         productPic: tempLottery.productPic,
