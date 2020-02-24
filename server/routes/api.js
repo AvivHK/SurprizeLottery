@@ -22,12 +22,9 @@ router.get('/lottery/:isProduct', async (req, res) => {
 
 router.put('/lottery/:lotteryID', async (req, res) => {
     const { lotteryID } = req.params;
-    let body = req.body
-    console.log(body)
-    await Lottery.findById(lotteryID)
-        .exec(function (err, response) {
-            response.users.push(body)
-        })
+    let body = JSON.parse(JSON.stringify(req.body));
+    await Lottery.findOneAndUpdate({ _id: lotteryID },
+        { $push: { users: body } })
 })
 
 router.get('/winners', async function (req, res) {
