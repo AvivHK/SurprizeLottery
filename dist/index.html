@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
-
     <title>SurprizeLottery</title>
 </head>
 
@@ -17,13 +16,12 @@
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"
         data-sdk-integration-source="button-factory"></script>
 
-
     <div id="header">
 
         <nav role="navigation">
             <div id="menuToggle">
 
-                <input type="checkbox" />
+                <input type="checkbox">
 
                 <span></span>
                 <span></span>
@@ -37,7 +35,6 @@
                 </ul>
             </div>
         </nav>
-
 
         <h1 id="siteName" class="goHome">Surprize Lottery</h1>
     </div>
@@ -109,11 +106,12 @@
                 </div>
                 <div class="popUpType">
                     <h3 class="popUpProductPrize">{{productPrize}}</h3>
+                    <h3 class="popUpProductDescription">{{productDescription}}</h3>
                 </div>
             {{/if}}
             {{#unless isProduct}}
                 <div class="popUpPrize">
-                    <h1 class="popUpMoneyPrize">{{moneyPrize}} DOLLARS</h1>
+                    <h1 class="popUpMoneyPrize">{{moneyPrize}}$ DOLLARS</h1>
                 </div>
                 <div class="popUpType">
                     <h3>Make your money NOW!</h3>

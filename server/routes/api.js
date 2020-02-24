@@ -3,6 +3,7 @@ const router = express.Router()
 const Lottery = require('../models/Lottery')
 
 
+// Get Routes- send Lotteries Data
 
 router.get('/lottery/:isProduct', async (req, res) => {
     const { isProduct } = req.params
@@ -14,9 +15,9 @@ router.get('/lottery/:isProduct', async (req, res) => {
     }
     else {
         await Lottery.find({ $and: [{ isProduct: false }, { done: false }] })
-            .exec((err, lotteries) => {
-                res.send(lotteries)
-            })
+        .exec((err, lotteries) => {
+            res.send(lotteries)
+        })
     }
 })
 
@@ -28,42 +29,7 @@ router.get('/oneLottery/:lotteryID', async (req, res) => {
 })
 
 
-router.put('/lottery/:lotteryID', async (req, res) => {
-    const { lotteryID } = req.params;
-    let body = JSON.parse(JSON.stringify(req.body));
-    await Lottery.findOneAndUpdate({ _id: lotteryID },
-        { $push: { users: body } })
-})
-
-router.put('/winner/:lotteryID', async (req, res) => {
-    const { lotteryID } = req.params;
-    let body = JSON.parse(JSON.stringify(req.body));
-    await Lottery.findOneAndUpdate({ _id: lotteryID },
-        { winner: body, done: true })
-})
-
-router.get('/winners', async function (req, res) {
-    const winners = []
-    await Lottery.find({ done: true })
-        .exec(function (err, response) {
-            console.log(response)
-            for (let i = 0; i < response.length; i++) {
-                winners.push({
-                    firstName: response[i].winner.firstName,
-                    lastName: response[i].winner.lastName,
-                    email: response[i].winner.email,
-                    address: response[i].winner.address,
-                    isProduct: response[i].isProduct,
-                    productPrize: response[i].productPrize,
-                    productDescription: response[i].productDescription,
-                    moneyPrize: response[i].moneyPrize,
-                    peoplePayToGetIn: response[i].users.length,
-                    productPic: response[i].productPic,
-                })
-            }
-            res.send(winners)
-        })
-})
+// Post Route- posting a new lottery
 
 router.post('/lottery/newLottery', async (req, res) => {
     let tempLottery = req.body
@@ -87,9 +53,60 @@ router.post('/lottery/newLottery', async (req, res) => {
 })
 
 
+// Put Route- Update a lottery 
+
+router.put('/lottery/:lotteryID', async (req, res) => {
+    const { lotteryID } = req.params;
+    let body = JSON.parse(JSON.stringify(req.body));
+    await Lottery.findOneAndUpdate({ _id: lotteryID },
+        { $push: { users: body } })
+})
+
+
+
+// Get Route- send an arr with a winner inside
+
+router.get('/winners', async function (req, res) {
+    const winners = []
+    await Lottery.find({ done: true })
+        .exec(function (err, response) {
+            for (let i = 0; i < response.length; i++) {
+                winners.push({
+                    firstName: response[i].winner.firstName,
+                    lastName: response[i].winner.lastName,
+                    email: response[i].winner.email,
+                    address: response[i].winner.address,
+                    isProduct: response[i].isProduct,
+                    productPrize: response[i].productPrize,
+                    productDescription: response[i].productDescription,
+                    moneyPrize: response[i].moneyPrize,
+                    peoplePayToGetIn: response[i].users.length,
+                    productPic: response[i].productPic,
+                })
+            }
+            res.send(winners)
+        })
+})
+
+
+// Put Route- Add a winner
+
+router.put('/winner/:lotteryID', async (req, res) => {
+    const { lotteryID } = req.params;
+    let body = JSON.parse(JSON.stringify(req.body));
+    await Lottery.findOneAndUpdate({ _id: lotteryID },
+        { winner: body, done: true })
+})
+
+
+
+//Get Route- Admin Adds Lotteries
+
 router.get('/admin/:password', async (req,res)=>{
     let {password} = req.params
     res.send('./admin.html')
 
 })
+
+
 module.exports = router
