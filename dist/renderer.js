@@ -2,9 +2,18 @@ class Renderer {
   renderHomePage() {
     $(`#container`).empty();
     $(`#container`).append(
-      ` <div class="animated zoomIn" id="money">money</div>
-        <div class="animated zoomIn" id="product">product</div>
-        <div class="animated zoomIn" id="WinnerList">WinnerList</div>`
+      ` <div id="money">
+      <i class="fas fa-money-bill-wave d"></i>
+      <p>money</p>
+      </div>
+        <div id="product">
+        <i class="fas fa-gifts"></i>
+        <p>product</p>
+        </div>
+        <div id="WinnerList">
+        <i class="fas fa-trophy"></i>
+        <p>WinnerList</p>
+        </div>`
     );
   }
 

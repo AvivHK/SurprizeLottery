@@ -23,22 +23,16 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
 });
 
 
-$('body').on("click", '#siteName', async function () {
+$('body').on("click", '#siteName', function () {
   loadHomePage()
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
+//card animation
+// $(`body`).on(`click`, `.card`, function () {
+//   $(`#container`).empty();
+//   $(`#container`).append($(this))
+// })
 
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
@@ -47,8 +41,6 @@ $(`body`).on(`click`, `.open-button`, function() {
   myForm.style.display = "block";
   pay(amount,id)
 })
-
-
 
 function pay(amount,id) {
   paypal.Buttons({
