@@ -13,9 +13,8 @@
 </head>
 
 <body>
-    
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"
-        data-sdk-integration-source="button-factory">
+
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory">
     </script>
 
     <div id="header">
@@ -68,16 +67,15 @@
 
 
     <script id="winnersTemplate" type="text/x-handlebars-template">
-        {{#each winnerData}}
-            <div class="winnerList">
-                <div class="winnerInfo">
-                    <div class="name">{{firstName}} {{lastName}} </div>
-                     <div class="won">
-                won {{productPrize}}</div>
-            </div>
-        </div>  
-        {{/each}}
-    </script>
+        <h3 class="winnerListHeader">Winner-List</h3>
+                <div class="winnerList">
+                     <ul>
+                         {{#each winnerData}}
+                              <li>{{firstName}} {{lastName}} won {{#if moneyPrize}}{{moneyPrize}}${{/if}}{{#if productPrize}}{{productPrize}} <img class="winnerpic" src="{{productPic}}" alt="productPic"> {{/if}} </li>
+                          {{/each}}
+                     </ul>
+               </div>
+          </script>
 
     <script src="/handlebars/dist/handlebars.js"></script>
     <script src="/jquery/dist/jquery.js"></script>
