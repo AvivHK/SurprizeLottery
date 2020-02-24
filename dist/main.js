@@ -6,6 +6,10 @@ const loadHomePage = function () {
 };
 loadHomePage();
 
+
+
+//Timer Functions
+
 function getTimeRemaining(dueDate){
   let t = Date.parse(dueDate) - Date.parse(new Date());
   let seconds = Math.floor( (t/1000) % 60 );
@@ -24,13 +28,12 @@ function getTimeRemaining(dueDate){
 function initializeClock(dueDate){
   let clock = document.getElementsByClassName('timer');
   let lotteryID = $(this).closest('.card').data.id()
-  let timeinterval = setInterval(function(){
+  let timeInterval = setInterval(function(){
     let t = getTimeRemaining(dueDate);
     clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
     if(t.total<=0){
-
-      chooseLotteryWiner(lotteryID)
-      clearInterval(timeinterval);
+      chooseLotteryWinner(lotteryID)
+      clearInterval(timeInterval);
     }
   },1000);
 }
@@ -42,12 +45,14 @@ function updateClock(){
   let clock = document.getElementsByClassName('timer');
   clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
   if(t.total<=0){
-    chooseLotteryWiner(lotteryID)
-    clearInterval(timeinterval);
+    chooseLotteryWinner(lotteryID)
+    clearInterval(timeInterval);
   }
 }
 
 
+
+//Homepage OnClicks()
 
 $(`body`).on(`click`, `#money`, async function () {
   let moneyData = await lotteryManager.getLottery(false);
@@ -63,8 +68,6 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
   let winnersData = await lotteryManager.getWinners();
   renderer.renderWinners(winnersData);
 });
-
-
 
 $('body').on("click", '.goHome', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
@@ -88,6 +91,10 @@ $('body').on("click", '.goWinner', async function () {
   let winnersData = await lotteryManager.getWinners();
   renderer.renderWinners(winnersData);
 })
+
+
+
+//PayPal Functions
 
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
@@ -122,6 +129,9 @@ function pay(amount,id) {
   }).render('.paypal-button-container');
 }
 
+
+
+//PopUp Functions
 
 $('body').on('click','.card', function(){
   let id = $(this).data('id')
