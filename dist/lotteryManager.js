@@ -26,16 +26,16 @@ class LotteryManager {
         email: details.email,
         address: details.address
       },
-      success: function(data) {
+      success: function (data) {
         console.log(`sent ${data}`);
       },
-      error: function() {
+      error: function () {
         console.log(`failed sending`);
       }
     });
   }
 
-  async addAWinner(lotteryID, details){
+  async addAWinner(lotteryID, details) {
     await $.ajax({
       type: "PUT",
       url: `winner/${lotteryID}`,
@@ -55,10 +55,18 @@ class LotteryManager {
   }
   chooseLotteryWinner(lotteryID) {
     const lotteryData = getOneLottery(lotteryID)
-    this.addAWinner(lotteryID,lotteryData.users[Math.floor(Math.random() * users.length)])
-
-return winner
+    this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * users.length)])
   }
+  
+  // async addLottery(){
+  //   await $.ajax({
+  //     type: "POST",
+  //     url: `lottery/newLottery`
+  //   })
+  // }
+
+
+
 
 }
 

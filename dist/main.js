@@ -63,6 +63,8 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
   renderer.renderWinners(winnersData);
 });
 
+
+
 $('body').on("click", '.goHome', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
   loadHomePage()
@@ -119,3 +121,18 @@ function pay(amount,id) {
   }).render('.paypal-button-container');
 }
 
+
+$('body').on('click','.card', function(){
+  let id = $(this).data('id')
+  div_show(id)
+})
+
+async function div_show(id) {
+  $('#popUpCard').css("display", "block");
+  let lottery = await lotteryManager.getOneLottery(id);
+  renderer.renderPopUp(lottery);
+  }
+
+  function div_hide(){
+  document.getElementById('popUpCard').style.display = "none";
+  }

@@ -28,8 +28,18 @@ class Renderer {
   renderWinners(winnerData) {
     const source = $(`#winnersTemplate`).html();
     const template = Handlebars.compile(source);
-    const newHTML = template({winnerData});
+    const newHTML = template({ winnerData });
     $(`#container`).empty();
     $(`#container`).append(newHTML);
+  }
+
+
+  renderPopUp(lotteryData) {
+    const source = $(`#popUpTemplate`).html();
+    const template = Handlebars.compile(source);
+    const newHTML = template(lotteryData);
+    $(`#popUpContainer`).empty();
+    $(`#popUpContainer`).append(newHTML);
+
   }
 }
