@@ -22,7 +22,7 @@ router.get('/lottery/:isProduct', async (req, res) => {
 
 router.get('/oneLottery/:lotteryID', async (req, res) => {
     const { lotteryID } = req.params;
-    await Lottery.findById(lotteryId).exec(function (err, result) {
+    await Lottery.findById(lotteryID).exec((err, result) => {
         res.send(result)
     })
 })
@@ -86,4 +86,10 @@ router.post('/lottery/newLottery', async (req, res) => {
     res.send(newLottery)
 })
 
+
+router.get('/admin/:password', async (req,res)=>{
+    let {password} = req.params
+    res.send('./admin.html')
+
+})
 module.exports = router

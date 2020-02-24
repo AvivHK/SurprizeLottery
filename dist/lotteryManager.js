@@ -56,9 +56,18 @@ class LotteryManager {
   chooseLotteryWinner(lotteryID) {
     const lotteryData = getOneLottery(lotteryID)
     this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * users.length)])
+
     }
 
-}
+  }
+  
+  // async addLottery(){
+  //   await $.ajax({
+  //     type: "POST",
+  //     url: `lottery/newLottery`
+  //   })
+  // }
 
 
-chooseLotteryWinner("5e538233aa515d537c79dc72")
+
+
