@@ -10,10 +10,34 @@ class LotteryManager {
     return lotteries;
   }
 
+  async getOneLottery(lotteryID) {
+    let lottery = await $.get(`/oneLottery/${lotteryID}`);
+    return lottery;
+  }
+
   async addUserToLottery(lotteryID, details) {
     await $.ajax({
       type: "PUT",
       url: `lottery/${lotteryID}`,
+      data: {
+        firstName: details.firstName,
+        lastName: details.lastName,
+        email: details.email,
+        address: details.address
+      },
+      success: function(data) {
+        console.log(`sent ${data}`);
+      },
+      error: function() {
+        console.log(`failed sending`);
+      }
+    });
+  }
+
+  async addAWinner(lotteryID, details){
+    await $.ajax({
+      type: "PUT",
+      url: `winner/${lotteryID}`,
       data: {
         firstName: details.payer.name.given_name,
         lastName: details.payer.name.surname,
