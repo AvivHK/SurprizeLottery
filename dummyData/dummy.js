@@ -462,8 +462,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
                 lastName: `gilboa`,
                 email: `ohadgil@gmail.com`,
                 address: `eilat`,
-                done: true
-            }
+            },
+            done: true
         },
         {
             entryFee: 1000,

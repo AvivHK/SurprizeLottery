@@ -1,6 +1,7 @@
 class LotteryManager {
+
   async getWinners() {
-    let winners = await $.get("/winners");
+    let winners = await $.get("winners");
     return winners;
   }
 
