@@ -21,8 +21,8 @@ function getTimeRemaining(dueDate){
   };
 }
 
-function initializeClock(timer, dueDate){
-  let clock = document.getElementsByClassName(timer);
+function initializeClock(dueDate){
+  let clock = document.getElementsByClassName('timer');
   let lotteryID = $(this).closest('.card').data.id()
   let timeinterval = setInterval(function(){
     let t = getTimeRemaining(dueDate);
@@ -39,6 +39,7 @@ function updateClock(){
   let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
   let t = getTimeRemaining(dueDate);
   let lotteryID = $(this).closest('.card').data().id
+  let clock = document.getElementsByClassName('timer');
   clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
   if(t.total<=0){
     chooseLotteryWiner(lotteryID)
