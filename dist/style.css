@@ -307,3 +307,45 @@ img{
 .name{
   font-size: 50px;
 }
+
+.winnerList{
+  border: 3px solid #31081F;
+  border-radius: 5%;
+  background-color: transparent;
+  color: #2c3e50;
+  height: 60%;
+  height:  fit-content;
+  width: 60%;
+  max-width: 400px;
+  justify-self: center;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  margin: 10px;
+  padding: 15px; 
+  box-shadow: 3px 3px black;
+  display: flex;
+}
+.winnerListHeader{
+  font-family: 'Odibee Sans';
+  position: absolute;
+  left: 34%;
+  top: 31%;
+
+
+}
+
+.winnerpic{
+width: 30px;
+height: 30px;
+
+}
+
+li{ 
+  font-size: 15px;
+  margin:0 0 20px 0;
+  }
+
+
+
+
