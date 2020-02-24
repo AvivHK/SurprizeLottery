@@ -6,6 +6,50 @@ const loadHomePage = function () {
 };
 loadHomePage();
 
+function getTimeRemaining(dueDate){
+  let t = Date.parse(dueDate) - Date.parse(new Date());
+  let seconds = Math.floor( (t/1000) % 60 );
+  let minutes = Math.floor( (t/1000/60) % 60 );
+  let hours = Math.floor( (t/(1000*60*60)) % 24 );
+  let days = Math.floor( t/(1000*60*60*24) );
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(timer, dueDate){
+  let clock = document.getElementsByClassName(timer);
+  let lotteryID = $(this).closest('.card').data.id()
+  let timeinterval = setInterval(function(){
+    let t = getTimeRemaining(dueDate);
+    clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
+    if(t.total<=0){
+
+      chooseLotteryWiner(lotteryID)
+      clearInterval(timeinterval);
+    }
+  },1000);
+}
+
+function updateClock(){
+  let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
+  let t = getTimeRemaining(dueDate);
+  let lotteryID = $(this).closest('.card').data().id
+  clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
+  if(t.total<=0){
+    chooseLotteryWiner(lotteryID)
+    clearInterval(timeinterval);
+  }
+}
+
+updateClock(); // run function once at first to avoid delay
+let timeinterval = setInterval(updateClock,1000);
+
+
 $(`body`).on(`click`, `#money`, async function () {
   let moneyData = await lotteryManager.getLottery(false);
   console.log(moneyData)
@@ -28,47 +72,4 @@ $('body').on("click", '#siteName', async function () {
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-$(`body`).on(`click`, `.open-button`, function() {
-  console.log(parseInt($(this).closest(`div`).siblings(`.buyIn`).text()))
-  let myForm = document.getElementById("myForm");
-  myForm.style.display = "block";
-})
-
-function pay(amount) {
-  paypal.Buttons({
-    style: {
-      shape: 'pill',
-      color: 'black',
-      layout: 'horizontal',
-      label: 'pay',
-      tagline: true
-    },
-    createOrder: function (data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: (`18`).toString()
-          }
-        }]
-      });
-    },
-    onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {
-        alert('Transaction completed by ' + details.payer.name.given_name + '!');
-      });
-    }
-  }).render('.paypal-button-container');
-}
 
