@@ -53,12 +53,11 @@ class LotteryManager {
       }
     });
   }
-  chooseLotteryWinner(lotteryID) {
-    const lotteryData = getOneLottery(lotteryID)
+
+  
+  async chooseLotteryWinner(lotteryID) {
+    const lotteryData = await getOneLottery(lotteryID)
     this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * users.length)])
-
-    }
-
   }
   
   // async addLottery(){
@@ -67,7 +66,6 @@ class LotteryManager {
   //     url: `lottery/newLottery`
   //   })
   // }
-
 
 
 

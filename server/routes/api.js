@@ -3,6 +3,7 @@ const router = express.Router()
 const Lottery = require('../models/Lottery')
 
 
+// Get Routes- send Lotteries Data
 
 router.get('/lottery/:isProduct', async (req, res) => {
     const { isProduct } = req.params
@@ -14,9 +15,9 @@ router.get('/lottery/:isProduct', async (req, res) => {
     }
     else {
         await Lottery.find({ $and: [{ isProduct: false }, { done: false }] })
-            .exec((err, lotteries) => {
-                res.send(lotteries)
-            })
+        .exec((err, lotteries) => {
+            res.send(lotteries)
+        })
     }
 })
 
@@ -28,6 +29,32 @@ router.get('/oneLottery/:lotteryID', async (req, res) => {
 })
 
 
+// Post Route- posting a new lottery
+
+router.post('/lottery/newLottery', async (req, res) => {
+    let tempLottery = req.body
+    let newLottery = new Lottery({
+        entryFee: tempLottery.entryFee,
+        isProduct: tempLottery.isProduct,
+        moneyPrize: tempLottery.moneyPrize,
+        productPrize: tempLottery.productPrize,
+        productPic: tempLottery.productPic,
+        productDescription: tempLottery.productDescription,
+        dueDate: tempLottery.dueDate,
+        usersIn: tempLottery.usersIn,
+        usersMax: tempLottery.usersMax,
+        endByTime: tempLottery.endByTime,
+        users: tempLottery.users,
+        winner: tempLottery.winner,
+        done: tempLottery.done
+    })
+    await newLottery.save()
+    res.send(newLottery)
+})
+
+
+// Put Route- Update a lottery 
+
 router.put('/lottery/:lotteryID', async (req, res) => {
     const { lotteryID } = req.params;
     let body = JSON.parse(JSON.stringify(req.body));
@@ -35,12 +62,9 @@ router.put('/lottery/:lotteryID', async (req, res) => {
         { $push: { users: body } })
 })
 
-router.put('/winner/:lotteryID', async (req, res) => {
-    const { lotteryID } = req.params;
-    let body = JSON.parse(JSON.stringify(req.body));
-    await Lottery.findOneAndUpdate({ _id: lotteryID },
-        { winner: body, done: true })
-})
+
+
+// Get Route- send an arr with a winner inside
 
 router.get('/winners', async function (req, res) {
     const winners = []
@@ -64,32 +88,24 @@ router.get('/winners', async function (req, res) {
         })
 })
 
-router.post('/lottery/newLottery', async (req, res) => {
-    let tempLottery = req.body
-    let newLottery = new Lottery({
-        entryFee: tempLottery.entryFee,
-        isProduct: tempLottery.isProduct,
-        productType:tempLottery.productType,
-        moneyPrize: tempLottery.moneyPrize,
-        productPrize: tempLottery.productPrize,
-        productPic: tempLottery.productPic,
-        productDescription: tempLottery.productDescription,
-        dueDate: tempLottery.dueDate,
-        usersIn: tempLottery.usersIn,
-        usersMax: tempLottery.usersMax,
-        endByTime: tempLottery.endByTime,
-        users: tempLottery.users,
-        winner: tempLottery.winner,
-        done: tempLottery.done
-    })
-    await newLottery.save()
-    res.send(newLottery)
+// Put Route- Add a winner
+
+router.put('/winner/:lotteryID', async (req, res) => {
+    const { lotteryID } = req.params;
+    let body = JSON.parse(JSON.stringify(req.body));
+    await Lottery.findOneAndUpdate({ _id: lotteryID },
+        { winner: body, done: true })
 })
 
+
+
+//Get Route- Admin Adds Lotteries
 
 router.get('/admin/:password', async (req,res)=>{
     let {password} = req.params
     res.send('./admin.html')
 
 })
+
+
 module.exports = router

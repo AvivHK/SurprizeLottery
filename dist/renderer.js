@@ -1,4 +1,5 @@
 class Renderer {
+  
   renderHomePage() {
     $(`#container`).empty();
     $(`#container`).append(
@@ -32,7 +33,6 @@ class Renderer {
     $(`#container`).empty();
     $(`#container`).append(newHTML);
   }
-
 
   renderPopUp(lotteryData) {
     const source = $(`#popUpTemplate`).html();

@@ -6,7 +6,19 @@ const loadHomePage = function () {
 };
 loadHomePage();
 
-function getTimeRemaining(dueDate){
+
+
+//PopUpTimer
+
+
+
+
+
+//Timer Functions
+
+function getTimeRemaining(){
+  let dueDate = $(this).closest('.lotteryInfo').find('.dueDate').text()
+
   let t = Date.parse(dueDate) - Date.parse(new Date());
   let seconds = Math.floor( (t/1000) % 60 );
   let minutes = Math.floor( (t/1000/60) % 60 );
@@ -20,17 +32,15 @@ function getTimeRemaining(dueDate){
     'seconds': seconds
   };
 }
-
-function initializeClock(timer, dueDate){
-  let clock = document.getElementsByClassName(timer);
+function initializeClock(dueDate){
+  var clock = document.getElementsByClassName('timer');
   let lotteryID = $(this).closest('.card').data.id()
-  let timeinterval = setInterval(function(){
+    var timeInterval = setInterval(function(){
     let t = getTimeRemaining(dueDate);
     clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
     if(t.total<=0){
-
-      chooseLotteryWiner(lotteryID)
-      clearInterval(timeinterval);
+      lotteryManager.chooseLotteryWinner(lotteryID)
+      clearInterval(timeInterval);
     }
   },1000);
 }
@@ -41,12 +51,15 @@ function updateClock(){
   let lotteryID = $(this).closest('.card').data().id
   clock.innerHTML = t.days + 'd, ' + t.hours + 'h, ' + t.minutes + 'm,' + t.seconds + 's.';
   if(t.total<=0){
-    chooseLotteryWiner(lotteryID)
-    clearInterval(timeinterval);
+
+    lotteryManager.chooseLotteryWinner(lotteryID)
+    clearInterval(timeInterval);
   }
 }
 
 
+
+//Homepage OnClicks()
 
 $(`body`).on(`click`, `#money`, async function () {
   let moneyData = await lotteryManager.getLottery(false);
@@ -63,8 +76,6 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
   renderer.renderWinners(winnersData);
 });
 
-
-
 $('body').on("click", '.goHome', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
   loadHomePage()
@@ -75,6 +86,7 @@ $('body').on("click", '.goMoney', async function () {
   let moneyData = await lotteryManager.getLottery(false);
   renderer.renderLottery(moneyData);
 })
+
 
 $('body').on("click", '.goProduct', async function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
@@ -87,6 +99,21 @@ $('body').on("click", '.goWinner', async function () {
   let winnersData = await lotteryManager.getWinners();
   renderer.renderWinners(winnersData);
 })
+
+
+$('body').on("click", '.goProduct', async function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  let productData = await lotteryManager.getLottery(true);
+  renderer.renderLottery(productData);
+})
+
+$('body').on("click", '.goWinner', async function () {
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
+  let winnersData = await lotteryManager.getWinners();
+  renderer.renderWinners(winnersData);
+})
+
+//PayPal Functions
 
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
