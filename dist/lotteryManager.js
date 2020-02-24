@@ -1,6 +1,4 @@
-// const dummy = require('../dummyData/dummy')
 
-// console.log(dummy[9]);
 class LotteryManager {
 
   async getWinners() {
@@ -39,8 +37,5 @@ return winner
   }
 
 }
-// const winner = new LotteryManager()
 
-
-//  winner.lotteryWinner(dummy[9])
 
