@@ -64,9 +64,11 @@ $(`body`).on(`click`, `#WinnerList`, async function () {
 });
 
 
-$('body').on("click", '#siteName', async function () {
+$('body').on("click", '#siteName', function () {
   loadHomePage()
 })
+
+
 
 
 $(`body`).on(`click`, `.open-button`, function() {
@@ -75,8 +77,6 @@ $(`body`).on(`click`, `.open-button`, function() {
   document.getElementById("myForm").style.display = "block";
   pay(amount,id)
 })
-
-
 
 function pay(amount,id) {
   paypal.Buttons({
