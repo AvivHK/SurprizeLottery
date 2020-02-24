@@ -42,4 +42,9 @@ class Renderer {
     $(`#popUpContainer`).append(newHTML);
 
   }
+
+  renderAddNewLottery(lotteryData) {
+    $(`#container`).empty();
+    $(`#container`).append()
+  }
 }
