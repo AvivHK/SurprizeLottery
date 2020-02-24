@@ -21,13 +21,12 @@ router.get('/lottery/:isProduct', async (req, res) => {
 })
 
 router.put('/lottery/:lotteryID', async (req, res) => {
-
-
     const { lotteryID } = req.params;
-    let userBody = JSON.parse(req.userBody)
+    let body = req.body
+    console.log(body)
     await Lottery.findById(lotteryID)
         .exec(function (err, response) {
-            response.users.push(userBody)
+            response.users.push(body)
         })
 })
 
@@ -45,7 +44,7 @@ router.get('/winners', async function (req, res) {
                     productPrize: response[i].productPrize,
                     productDescription: response[i].productDescription,
                     moneyPrize: response[i].moneyPrize,
-                    // peoplePayToGetIn: response[i].user.length,
+                    peoplePayToGetIn: response[i].users.length,
                     productPic: response[i].productPic,
                 })
             }
