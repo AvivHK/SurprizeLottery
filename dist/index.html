@@ -7,81 +7,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
+    <title>SurprizeLottery</title>
 </head>
 
 <body>
+    
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"
-        data-sdk-integration-source="button-factory"></script>
+        data-sdk-integration-source="button-factory">
+    </script>
 
     <div id="header">
-        <h1 id="siteName">Site Name!</h1>
+        <h1 id="siteName">Surprize Lottery</h1>
     </div>
-
     <div id="container"></div>
 
     <script id="lotteryTemplate" type="text/x-handlebars-template">
-    {{#each lotteryData}}
-    
-        <div class="card">
-            
-            {{#if isProduct}}
-                <div class="prize">
-                    <img  src="{{productPic}}" alt="{{productPrize}}">
+        {{#each lotteryData}}
+            <div class="card">  
+                {{#if isProduct}}
+                    <div class="prize">
+                        <img  src="{{productPic}}" alt="{{productPrize}}">
+                    </div>
+                    <div class="type">
+                        <h3 >{{productPrize}}</h3>
+                    </div>
+                {{/if}}
+                {{#unless isProduct}}
+                    <div class="prize">
+                        <h1>{{moneyPrize}} DOLLARS</h1>
+                    </div>
+                    <div class="type">
+                        <h3 >{{moneyPrize}}$</h3>
+                    </div>
+                {{/unless}}
+                <div class="lotteryInfo">
+                    <div class="participants">Odds: 1/{{users.length}} </div>
+                    <div class="timer">timer</div>
+                    <div class="dueDate">{{dueDate}}</div>
                 </div>
-                <div class="type">
-                    <h3 >{{productPrize}}</h3>
-                </div>
-            {{/if}}
-            {{#unless isProduct}}
-                <div class="prize">
-                    <h1>{{moneyPrize}} DOLLARS</h1>
-                </div>
-                <div class="type">
-                    <h3 >{{moneyPrize}}$</h3>
-                </div>
-            {{/unless}}
-            <div class="lotteryInfo">
-                <div class="participants">Odds: 1/{{users.length}} </div>
-                <div class="timer">timer</div>
-                <div class="dueDate">{{dueDate}}</div>
-            </div>
-            
-            <div class="paymentBox">
-
+                <div class="paymentBox">
                 <div class="buyIn">{{entryFee}}$ per ticket</div>
-                <div><button class="open-button" >Open Form</button></div>
-    </div>
-    </div>
-    
-    {{/each}}
-
-
-
-
-
-
-
-    
-    
-    <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <p>
-                <div class="paypal-button-container"></div>
-                <script>pay()</script>
-    </p>
-    </form>
-    </div>
-
-    <script>
-
-
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
+                <div>
+                    <button class="open-button" >Open Form</button></div>
+                </div>
+            </div>
+        {{/each}}
+            <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+                <p><div class="paypal-button-container"></div></p>
+            </form>
+            </div>
+        <script>
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+        </script>
     </script>
-
-
 
     <script id="winnersTemplate" type="text/x-handlebars-template">
         {{#each winnerData}}
@@ -93,38 +81,14 @@
             </div>
             </ul>  
         {{/each}}
-  </script>
+    </script>
 
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="renderer.js"></script>
+    <script src="lotteryManager.js"></script>
+    <script src="main.js"></script>
 
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="/handlebars/dist/handlebars.js"></script>
-<script src="/jquery/dist/jquery.js"></script>
-<script src="renderer.js"></script>
-<script src="lotteryManager.js"></script>
-<script src="main.js"></script>
 </body>
 
 </html>
