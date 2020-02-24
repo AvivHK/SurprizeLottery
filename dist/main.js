@@ -27,11 +27,7 @@ $('body').on("click", '#siteName', function () {
 })
 
 
-//card animation
-// $(`body`).on(`click`, `.card`, function () {
-//   $(`#container`).empty();
-//   $(`#container`).append($(this))
-// })
+
 
 $(`body`).on(`click`, `.open-button`, function() {
   let amount =parseInt($(this).closest(`div`).siblings(`.buyIn`).text())
