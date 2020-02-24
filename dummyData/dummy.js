@@ -394,6 +394,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
                 email: `pini@gmail.com`,
                 address: `NYC`
             }],
+            winner:{},
             done: false
         },
         {
@@ -463,6 +464,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
                 email: `ohadgil@gmail.com`,
                 address: `eilat`,
             },
+            winner:{},
             done: true
         },
         {
@@ -525,6 +527,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
                 email: `pini@gmail.com`,
                 address: `NYC`
             }],
+            winner:{},
             done: false
         },
         {
@@ -587,6 +590,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
                 email: `pini@gmail.com`,
                 address: `NYC`
             }],
+            winner:{},
             done: false
         }
     ]
@@ -611,3 +615,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SurprizeLottery
     }
     
     saveDummyData()
+
+    module.exports = dummyLotteries
