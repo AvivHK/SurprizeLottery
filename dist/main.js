@@ -149,7 +149,7 @@ $('body').on("click", '#productSubmit', async function(){
   $("input[type='number']").val("")
   $("#thePic").val("")
   $("#theDescription").val("")
-  lotteryManager.addNewLottery(newLottery)
+  await lotteryManager.addNewLottery(newLottery)
 })
 
 $("body").on("click", ".prodFilterParams", async function(){
