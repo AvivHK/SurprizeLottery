@@ -119,7 +119,7 @@ class Renderer {
 
       <div class="productForm">
         <label class="submitting" for="theDescription">Product Description</label><br>
-        <textarea id="theDescription" style="width:150px; height:200px;" placeholder="type something"></textarea><br>
+        <input id="theDescription" style="width:150px; height:200px;" placeholder="type something"></input><br>
       </div>
 
       <div></div>

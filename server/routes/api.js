@@ -32,6 +32,8 @@ router.get('/filterProducts/:filterType', async (req, res) => {
     const { filterType } = req.params
     await Lottery.find({ $and: [{ isProduct: false }, { productType: filterType }] })
     .exec((err, lotteries) => {
+        console.log(`I want  ${lotteries}`);
+        
         res.send(lotteries)
     })
 })
