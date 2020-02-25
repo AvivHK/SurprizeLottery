@@ -89,7 +89,7 @@ class LotteryManager {
   async getFilteredProducts(filterType){
     console.log(`check1`);
     let lotteries = await $.get(`/filterProducts/${filterType}`)
-    console.log(`check2`);
+    console.log(lotteries);
     return lotteries
   }
 
