@@ -423,12 +423,14 @@ form {
   display: grid;
   padding: 3px;
   margin: 5px;
+  color: #ecf0f1;
 }
 
 .filterParams{
   display: grid;
   padding: 3px;
   margin: 5px;
+  color: #ecf0f1;
 }
 
 
