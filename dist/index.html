@@ -59,7 +59,7 @@
     <script id="lotteryTemplate" type="text/x-handlebars-template">
         
         {{#each lotteryData}}
-                <div class="card" data-id={{_id}}>
+                <div class="card"  data-id={{_id}}>
                 {{#if isProduct}}
                     <div class="prize">
                         <img  src="{{productPic}}" alt="{{productPrize}}">
@@ -78,6 +78,7 @@
                 {{/unless}}
                 
                 <div class="lotteryInfo">
+
                     <div class="participants">Participants: {{users.length}} </div>
 
                     <div class="needToChange"></div>
@@ -113,7 +114,7 @@
 
 
     <script id="popUpTemplate" type="text/x-handlebars-template">
-        <div class="popUpCard" data-id={{_id}}>
+        <div class="popUpCard" data-isProduct={{isProduct}} data-id={{_id}}>
             {{#if isProduct}}
                 <div class="popUpPrize">
                     <img class="popUpImage" src="{{productPic}}" alt="{{productPrize}}">

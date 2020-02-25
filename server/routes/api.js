@@ -57,7 +57,6 @@ router.post('/lottery/newLottery', async (req, res) => {
 
 router.put('/lottery/:lotteryID', async (req, res) => {
     const { lotteryID } = req.params;
-    console.log(lotteryID)
     let body = JSON.parse(JSON.stringify(req.body));
     await Lottery.findOneAndUpdate({ _id: lotteryID },
         { $push: { users: body } })
