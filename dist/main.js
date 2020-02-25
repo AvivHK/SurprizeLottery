@@ -70,9 +70,9 @@ $('body').on("click", '#moneySubmit', async function(){
     dueDate: newDueDate,
     done: false
   }
-  $("#theDueDate").val("")
+  $("input[type='datetime-local']").val("")
   $("#theMoneyPrize").val("")
-  $("#theEntryFee").val("")
+  $("input[type='number']").val("")
   lotteryManager.addNewLottery(newLottery)
 })
 
@@ -93,10 +93,10 @@ $('body').on("click", '#productSubmit', async function(){
     dueDate: newDueDate,
     done: false
   }
-  $(".theDueDate").val("")
-  $("input[name='productType']:checked").val("")
+  $("input[type='datetime-local']").val("")
+  $("input[name='productType']").prop("checked", false);
   $("#theProduct").val("")
-  $(".theEntryFee").val("")
+  $("input[type='number']").val("")
   $("#thePic").val("")
   $("#theDescription").val("")
   lotteryManager.addNewLottery(newLottery)
