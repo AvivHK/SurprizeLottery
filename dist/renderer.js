@@ -71,31 +71,32 @@ class Renderer {
   }
 
   renderNewProductLottery() {
+    
     $(`#container`).empty();
     $(`#container`).append(`
     
     <div class="productForm">
 
-      <label class="submitting" class="submitting" for="theDueDate">Lottery Due Date</label><br>
+      <label class="submitting" for="theDueDate">Lottery Due Date</label><br>
       <br>
-      <input class="submitting" class="submitting theDueDate" type="datetime-local"><br>
+      <input class="submitting theDueDate" type="datetime-local"><br>
 
-      <input class="submitting" type="radio" id="vehicle" name="productType">
+      <input class="submitting" type="radio" id="vehicle" name="productType" value="Vehicles">
       <label class="submitting" for="vehicle">Vehicle</label><br>
 
-      <input class="submitting" type="radio" id="gadget" name="productType">
+      <input class="submitting" type="radio" id="gadget" name="productType" value="Gadgets">
       <label class="submitting" for="gadget">Gadget</label><br>
 
-      <input class="submitting" type="radio" id="electonic" name="productType">
-      <label class="submitting" for="electonic">Electrinic device</label><br>
+      <input class="submitting" type="radio" id="electonic" name="productType" value="Electrinic devices">
+      <label class="submitting" for="electonic">Electrinic Device</label><br>
 
-      <input class="submitting" type="radio" id="clothing" name="productType">
-      <label class="submitting" for="clothing">Clothing item</label><br>
+      <input class="submitting" type="radio" id="clothing" name="productType" value="Clothing items">
+      <label class="submitting" for="clothing">Clothing Item</label><br>
 
-      <input class="submitting" type="radio" id="furniture" name="productType">
+      <input class="submitting" type="radio" id="furniture" name="productType" value="Furniture">
       <label class="submitting" for="furniture">Furniture</label><br>
 
-      <input class="submitting" type="radio" id="other" name="productType">
+      <input class="submitting" type="radio" id="other" name="productType" value="Others">
       <label class="submitting" for="other">Other</label><br>
       
     </div>
@@ -124,6 +125,8 @@ class Renderer {
     <div><button class="submitting" id="productSubmit">Submit</button></div>
     <div></div>
     `)
+   
   }
+
 
 }

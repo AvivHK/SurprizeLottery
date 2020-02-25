@@ -61,6 +61,7 @@ class LotteryManager {
   }
 
   async addNewLottery(lotteryDetails){
+    console.log(3344)
     await $.ajax({
       type: "POST",
       url: `/lottery/newLottery`,
@@ -86,6 +87,12 @@ class LotteryManager {
     });
   }
   
+  async getFilteredProducts(filterType){
+    console.log(`check1`);
+    let lotteries = await $.get(`/filterProducts/${filterType}`)
+    console.log(`check2`);
+    return lotteries
+  }
 
 
 }

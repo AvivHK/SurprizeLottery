@@ -199,7 +199,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1em;
-
   font-family: Arial, Helvetica, sans-serif;
   padding: 15px;
   justify-items: center;
@@ -346,6 +345,49 @@ form {
 }
 
 /*********** pop up css ************/
+
+/*********** filters ************/
+
+
+#theFilter{
+  display: grid;
+  height: 5vh;
+  width: 100vw;
+  background-color: #344055;
+  justify-content: center;
+}
+
+.productFilters{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+ 
+}
+
+.moneyFilters{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+ 
+}
+
+.pRange{
+  color: #ecf0f1;
+}
+
+.prodFilterParams{
+  display: grid;
+  padding: 3px;
+  margin: 5px;
+}
+
+.filterParams{
+  display: grid;
+  padding: 3px;
+  margin: 5px;
+}
+
+
+
+/*********** filters ************/
 
 
 
