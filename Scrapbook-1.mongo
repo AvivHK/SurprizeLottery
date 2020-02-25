@@ -1,0 +1,1 @@
+db.lotteries.find({"_id":"5e54d8c5f54ae3250c32bb18"})

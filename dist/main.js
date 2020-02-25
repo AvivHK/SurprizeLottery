@@ -39,7 +39,7 @@ $(`body`).on(`click`, `#product`, async function () {
   `)
   let productData = await lotteryManager.getLottery(true);
   renderer.renderLottery(productData);
-  checkIfDone()
+  
 
 });
 
@@ -108,7 +108,7 @@ $('body').on("click", '.goAddProduct', async function () {
   renderer.renderNewProductLottery()
 })
 
-$('body').on("click", '#moneySubmit', async function(){
+$('body').on("click", '#moneySubmit', async function () {
   let newDueDate = $(".theDueDate").val()
   let newMoneyPrize = $("#theMoneyPrize").val()
   let newEntreeFee = $(".theEntryFee").val()
@@ -125,7 +125,7 @@ $('body').on("click", '#moneySubmit', async function(){
   lotteryManager.addNewLottery(newLottery)
 })
 
-$('body').on("click", '#productSubmit', async function(){
+$('body').on("click", '#productSubmit', async function () {
   let newDueDate = $(".theDueDate").val()
   let newType = $("input[name='productType']:checked").val();
   let newProductPrize = $("#theProduct").val()
@@ -152,7 +152,7 @@ $('body').on("click", '#productSubmit', async function(){
   await lotteryManager.addNewLottery(newLottery)
 })
 
-$("body").on("click", ".prodFilterParams", async function(){
+$("body").on("click", ".prodFilterParams", async function () {
   let filterKind = $(this).text()
   console.log(filterKind);
   let relevantData = await lotteryManager.getFilteredProducts(filterKind)
@@ -257,17 +257,26 @@ function timer(dueDate) {
     if (distance < 0) {
       clearInterval(interval);
       document.getElementById("demo").innerHTML = "EXPIRED";
+      checkIfDone()
+      div_hide()
+      renderer.renderHomePage()
     }
   }, 1000);
 }
 
-async function checkIfDone(){
+async function checkIfDone() {
   let lotteryProduct = await lotteryManager.getLottery(true)
   lotteryProduct.forEach(a => {
-    if(!a.done){
-      if(new Date(a.dueDate) < new Date().getTime()){
+    if (!a.done) {
+      if (new Date(a.dueDate) < new Date().getTime()) {
         lotteryManager.chooseLotteryWinner(a._id)
       }
+    }
+  })
+  let lotteryMooney = await lotteryManager.getLottery(false)
+  lotteryMooney.forEach(a => {
+    if (!a.done && (new Date(a.dueDate) < new Date().getTime())) {
+      lotteryManager.chooseLotteryWinner(a._id)
     }
   })
 }
