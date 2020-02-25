@@ -28,6 +28,14 @@ router.get('/oneLottery/:lotteryID', async (req, res) => {
     })
 })
 
+router.get('/filterProducts/:filterType', async (req, res) => {
+    const { filterType } = req.params
+    await Lottery.find({ $and: [{ isProduct: false }, { productType: filterType }] })
+    .exec((err, lotteries) => {
+        res.send(lotteries)
+    })
+})
+
 
 // Post Route- posting a new lottery
 
@@ -97,6 +105,8 @@ router.put('/winner/:lotteryID', async (req, res) => {
         { winner: body, done: true })
     res.end();
 })
+
+
 
 
 module.exports = router
