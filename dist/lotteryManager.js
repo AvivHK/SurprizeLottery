@@ -85,8 +85,4 @@ class LotteryManager {
       }
     });
   }
-  
-
-
-
-
+}
