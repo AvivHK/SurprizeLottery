@@ -1,4 +1,3 @@
-
 class LotteryManager {
 
   async getWinners() {
@@ -21,10 +20,10 @@ class LotteryManager {
       type: "PUT",
       url: `lottery/${lotteryID}`,
       data: {
-        firstName: details.firstName,
-        lastName: details.lastName,
-        email: details.email,
-        address: details.address
+        firstName: details.payer.name.given_name,
+        lastName: details.payer.name.surname,
+        email: details.payer.email_address,
+        address: details.payer.address.address_line_1 + ' ' + details.payer.address.admin_area_2 + ' ' + details.payer.address.admin_area_1 + ' ' + details.payer.address.postal_code + ' ' + details.payer.address.country_code
       },
       success: function (data) {
         console.log(`sent ${data}`);
@@ -40,10 +39,10 @@ class LotteryManager {
       type: "PUT",
       url: `winner/${lotteryID}`,
       data: {
-        firstName: details.payer.name.given_name,
-        lastName: details.payer.name.surname,
-        email: details.payer.email_address,
-        address: details.payer.address.address_line_1 + ' ' + details.payer.address.admin_area_2 + ' ' + details.payer.address.admin_area_1 + ' ' + details.payer.address.postal_code + ' ' + details.payer.address.country_code
+        firstName: details.firstName,
+        lastName: details.lastName,
+        email: details.email,
+        address: details.address
       },
       success: function (data) {
         console.log(`sent ${data}`);
@@ -54,18 +53,9 @@ class LotteryManager {
     });
   }
 
-  
   async chooseLotteryWinner(lotteryID) {
-    const lotteryData = await getOneLottery(lotteryID)
-    this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * users.length)])
+    const lotteryData = await this.getOneLottery(lotteryID)
+    this.addAWinner(lotteryID, lotteryData.users[Math.floor(Math.random() * lotteryData.users.length)])
   }
-  
-  // async addLottery(){
-  //   await $.ajax({
-  //     type: "POST",
-  //     url: `lottery/newLottery`
-  //   })
-  // }
 
-
-
+}
