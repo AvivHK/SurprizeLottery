@@ -52,16 +52,57 @@ $('body').on("click", '.goWinner', async function () {
 })
 
 
-$('body').on("click", '.goProduct', async function () {
+$('body').on("click", '.goAddMoney', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
-  let productData = await lotteryManager.getLottery(true);
-  renderer.renderLottery(productData);
+  renderer.renderNewMoneyLottery()
 })
 
-$('body').on("click", '.goWinner', async function () {
+$('body').on("click", '.goAddProduct', function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
-  let winnersData = await lotteryManager.getWinners();
-  renderer.renderWinners(winnersData);
+  renderer.renderNewProductLottery()
+})
+
+$('body').on("click", '#moneySubmit', async function(){
+  let newDueDate = $(".theDueDate").val()
+  let newMoneyPrize = $("#theMoneyPrize").val()
+  let newEntreeFee = $(".theEntryFee").val()
+  let newLottery = {
+    entryFee: newEntreeFee,
+    isProduct: false,
+    moneyPrize: newMoneyPrize,
+    dueDate: newDueDate,
+    done: false
+  }
+  $("input[type='datetime-local']").val("")
+  $("#theMoneyPrize").val("")
+  $("input[type='number']").val("")
+  lotteryManager.addNewLottery(newLottery)
+})
+
+$('body').on("click", '#productSubmit', async function(){
+  let newDueDate = $(".theDueDate").val()
+  let newType = $("input[name='productType']:checked").val();
+  let newProductPrize = $("#theProduct").val()
+  let newEntreeFee = $(".theEntryFee").val()
+  let newPic = $("#thePic").val()
+  let newDescript = $("#theDescription").val()
+  let newLottery = {
+    entryFee: newEntreeFee,
+    isProduct: true,
+    productType: newType,
+    productPrize: newProductPrize,
+    productPic: newPic,
+    productDescription: newDescript,
+    dueDate: newDueDate,
+    done: false
+  }
+  $("input[type='datetime-local']").val("")
+  $("input[name='productType']").prop("checked", false);
+  $("#theProduct").val("")
+  $("input[type='number']").val("")
+  $("#thePic").val("")
+  $("#theDescription").val("")
+  lotteryManager.addNewLottery(newLottery)
 })
 
 //PayPal Functions
@@ -71,6 +112,7 @@ $(`body`).on(`click`, `.buyPayPal`, function () {
   let id = $(this).closest('.popUpCard').data('id')
   let isProduct = $(this).closest('.popUpCard').data('isproduct')
   pay(amount, id, isProduct)
+
 })
 
 function pay(amount, id, isProductBool) {

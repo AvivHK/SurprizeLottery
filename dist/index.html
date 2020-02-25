@@ -43,6 +43,8 @@
                     <li class="goMoney">Money Lotteries</li>
                     <li class="goProduct">Product Lotteries</li>
                     <li class="goWinner">Winners List</li>
+                    <li class="goAddMoney">Add New Money Lottery</li>
+                    <li class="goAddProduct">Add New Product Lottery</li>
                 </ul>
             </div>
         </nav>
@@ -56,15 +58,6 @@
     
     <script id="lotteryTemplate" type="text/x-handlebars-template">
         
-        <!-- <div class="filter dropdown">
-            <h5 class="filters Money dropbtn">Money Lottery filter</h5>
-            <div class="dropdown-content">
-                <a href="#">From 0 to 10000</a>
-                <a href="#">From 10000 to 500000</a>
-                <a href="#">From 50000 to Max</a>
-              </div>
-            <h5 class="filters Product">Product Lottery filter</h5>
-        </div> -->
         {{#each lotteryData}}
                 <div class="card"  data-id={{_id}}>
                 {{#if isProduct}}
@@ -85,7 +78,8 @@
                 {{/unless}}
                 
                 <div class="lotteryInfo">
-                    <div class="participants">participants: {{users.length}} </div>
+
+                    <div class="participants">Participants: {{users.length}} </div>
 
                     <div class="needToChange"></div>
                     <div class="dueDate">{{dueDate}}</div>

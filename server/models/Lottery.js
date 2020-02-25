@@ -5,6 +5,7 @@ const lotterySchema = new Schema ({
     entryFee: Number,
     isProduct: Boolean,
     moneyPrize: Number,
+    productType: String,
     productPrize: String,
     productPic: String,
     productDescription: String,
