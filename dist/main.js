@@ -96,12 +96,12 @@ $('body').on("click", '.goWinner', async function () {
 $('body').on("click", '.goAddMoney', async function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
   $("#theFilter").empty()
-  await renderer.renderNewMoneyLottery()
+  renderer.renderNewMoneyLottery()
 })
 
 $('body').on("click", '.goAddProduct', async function () {
-  await  $(this).closest('#menuToggle').find('input').prop("checked", false);
   $("#theFilter").empty()
+  $(this).closest('#menuToggle').find('input').prop("checked", false);
   renderer.renderNewProductLottery()
 })
 
