@@ -45,8 +45,16 @@
         </nav>
         <h1 id="siteName" class="goHome">Surprize Lottery</h1>
     </div>
-    <div id="container"></div>
+
+
+    <div id="content">
+        <div id="theFilter"></div>
+        <div id="container"></div>
+    </div>
+
     <script id="lotteryTemplate" type="text/x-handlebars-template">
+
+
         {{#each lotteryData}}
                 <div class="card"  data-id={{_id}}>
                 {{#if isProduct}}

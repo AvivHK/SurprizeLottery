@@ -12,11 +12,31 @@ loadHomePage();
 //Homepage OnClicks()
 
 $(`body`).on(`click`, `#money`, async function () {
+  $("#theFilter").empty()
+  $("#theFilter").html(`
+  <div class="moneyFilters">
+    <div class="filterParams pRange"> <strong>Ticket Price Range :</strong></div>
+    <div class="filterParams"></div>
+    <div class="filterParams"> Low </div>
+    <div class="filterParams"> Medium </div>
+    <div class="filterParams">High </div>
+  </div>
+  `)
   let moneyData = await lotteryManager.getLottery(false);
   renderer.renderLottery(moneyData);
 });
 
 $(`body`).on(`click`, `#product`, async function () {
+  $("#theFilter").html(`
+  <div class="productFilters">
+    <div class="prodFilterParams">Vehicles</div>
+    <div class="prodFilterParams">Gadgets</div>
+    <div class="prodFilterParams">Electrinic devices</div>
+    <div class="prodFilterParams">Clothing items</div>
+    <div class="prodFilterParams">Furniture</div>
+    <div class="prodFilterParams">Others</div>
+  </div>
+  `)
   let productData = await lotteryManager.getLottery(true);
   renderer.renderLottery(productData);
   checkIfDone()
@@ -24,40 +44,66 @@ $(`body`).on(`click`, `#product`, async function () {
 });
 
 $(`body`).on(`click`, `#WinnerList`, async function () {
+  $("#theFilter").empty()
   let winnersData = await lotteryManager.getWinners();
   renderer.renderWinners(winnersData);
 });
 
 $('body').on("click", '.goHome', function () {
+  $("#theFilter").empty()
   $(this).closest('#menuToggle').find('input').prop("checked", false);
   loadHomePage()
 })
 
 $('body').on("click", '.goMoney', async function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
+  $("#theFilter").empty()
+  $("#theFilter").html(`
+  <div class="moneyFilters">
+    <div class="filterParams pRange"> <strong>Ticket Price Range :</strong></div>
+    <div class="filterParams"></div>
+    <div class="filterParams"> Low </div>
+    <div class="filterParams"> Medium </div>
+    <div class="filterParams">High </div>
+  </div>
+  `)
   let moneyData = await lotteryManager.getLottery(false);
   renderer.renderLottery(moneyData);
 })
 
 $('body').on("click", '.goProduct', async function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
+  $("#theFilter").empty()
+  $("#theFilter").html(`
+  <div class="productFilters">
+    <div class="prodFilterParams">Vehicles</div>
+    <div class="prodFilterParams">Gadgets</div>
+    <div class="prodFilterParams">Electrinic devices</div>
+    <div class="prodFilterParams">Clothing items</div>
+    <div class="prodFilterParams">Furniture</div>
+    <div class="prodFilterParams">Others</div>
+  </div>
+  `)
   let productData = await lotteryManager.getLottery(true);
   renderer.renderLottery(productData);
 })
 
 $('body').on("click", '.goWinner', async function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
+  $("#theFilter").empty()
   let winnersData = await lotteryManager.getWinners();
   renderer.renderWinners(winnersData);
 })
 
 
-$('body').on("click", '.goAddMoney', function () {
+$('body').on("click", '.goAddMoney', async function () {
   $(this).closest('#menuToggle').find('input').prop("checked", false);
+  $("#theFilter").empty()
   renderer.renderNewMoneyLottery()
 })
 
-$('body').on("click", '.goAddProduct', function () {
+$('body').on("click", '.goAddProduct', async function () {
+  $("#theFilter").empty()
   $(this).closest('#menuToggle').find('input').prop("checked", false);
   renderer.renderNewProductLottery()
 })
@@ -96,6 +142,7 @@ $('body').on("click", '#productSubmit', async function(){
     dueDate: newDueDate,
     done: false
   }
+  console.log(newLottery)
   $("input[type='datetime-local']").val("")
   $("input[name='productType']").prop("checked", false);
   $("#theProduct").val("")
@@ -103,6 +150,13 @@ $('body').on("click", '#productSubmit', async function(){
   $("#thePic").val("")
   $("#theDescription").val("")
   lotteryManager.addNewLottery(newLottery)
+})
+
+$("body").on("click", ".prodFilterParams", async function(){
+  let filterKind = $(this).text()
+  console.log(filterKind);
+  let relevantData = await lotteryManager.getFilteredProducts(filterKind)
+  renderer.renderLottery(relevantData)
 })
 
 //PayPal Functions
