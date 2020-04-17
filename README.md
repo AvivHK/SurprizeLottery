@@ -11,7 +11,7 @@ Surprize lottery is a entertainment webApp where you can earn money.
 ## Access
 
 Just click on the link:
-[Surprize Lottery website](www.SurprizeLottery.com)
+[Surprize Lottery website](https://surpize.herokuapp.com/)
 
 ## Created By 
 
