@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "handlebars": "^4.7.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.9.2",
     "path": "^0.12.7",
     "paypal": "^1.0.1",
